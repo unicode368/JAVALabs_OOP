@@ -5,6 +5,5 @@ public class StudentCreditBook {
     String patronymic;
 
     String number;
-    String
 
 }
