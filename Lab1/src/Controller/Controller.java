@@ -15,15 +15,17 @@ public class Controller {
 
     public void run() {
         start.show();
-        input.option();
+        setOption(input.option());
     }
 
-    public void setOption(String option) {
+
+
+    public void setOption(String userOption) {
         Validator validator = new Validator();
-        while (!validator.checkOption(option)) {
+        while (!validator.checkOption(userOption)) {
             System.out.println("Невірно введені дані. Будь ласка, оберіть одну з опцій 1 або 2.");
-            input.option();
+            userOption = input.option();
         }
-        this.option = Integer.parseInt(option);
+        option = Integer.parseInt(userOption);
     }
 }
