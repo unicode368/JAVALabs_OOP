@@ -1,5 +1,6 @@
 package Controller;
 
+import BusinessModel.BusinessLogic;
 import View.ProgramView;
 
 public class Controller {
@@ -16,6 +17,8 @@ public class Controller {
     public void run() {
         start.show();
         setOption(input.option());
+        BusinessLogic choosenTask = new BusinessLogic();
+        choosenTask.execute(option);
     }
 
 
