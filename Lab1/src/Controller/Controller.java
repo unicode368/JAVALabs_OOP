@@ -1,6 +1,7 @@
 package Controller;
 
 import BusinessModel.BusinessLogic;
+import BusinessModel.DataSource;
 import View.ProgramView;
 
 public class Controller {
@@ -8,27 +9,39 @@ public class Controller {
     private int option;
     private ProgramView start;
     private InputStream input;
+    private Validator validator;
+    private ProgramView view;
+    private BusinessLogic choosenTask;
+    private DataSource dataSource;
 
     public Controller() {
         start = new ProgramView();
         input = new InputStream();
+        validator = new Validator();
+        view = new ProgramView();
+        choosenTask = new BusinessLogic();
     }
 
     public void run() {
         start.show();
         setOption(input.option());
-        BusinessLogic choosenTask = new BusinessLogic();
         choosenTask.execute(option);
     }
 
 
 
     public void setOption(String userOption) {
-        Validator validator = new Validator();
         while (!validator.checkOption(userOption)) {
-            System.out.println("Невірно введені дані. Будь ласка, оберіть одну з опцій 1 або 2.");
+            view.wrongOption();
             userOption = input.option();
         }
         option = Integer.parseInt(userOption);
+    }
+
+    public void askForData() {
+        view.arraySize();
+        while (!validator.checkOption(input.option())) {
+
+        }
     }
 }
