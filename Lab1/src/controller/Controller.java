@@ -1,7 +1,7 @@
-package Controller;
+package controller;
 
-import BusinessModel.BusinessLogic;
-import BusinessModel.DataSource;
+import model.BusinessLogic;
+import model.DataSource;
 import View.ProgramView;
 
 public class Controller {

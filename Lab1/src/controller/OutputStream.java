@@ -1,6 +1,6 @@
-package Controller;
+package controller;
 
-import BusinessModel.Entity;
+import model.Entity;
 
 public class OutputStream {
 

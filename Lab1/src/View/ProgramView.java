@@ -1,7 +1,6 @@
 package View;
 
-import Controller.InputStream;
-import Controller.OutputStream;
+import controller.OutputStream;
 
 public class ProgramView {
 

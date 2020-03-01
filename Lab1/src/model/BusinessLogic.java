@@ -1,6 +1,6 @@
-package BusinessModel;
+package model;
 
-import Controller.Controller;
+import controller.Controller;
 
 public class BusinessLogic {
 

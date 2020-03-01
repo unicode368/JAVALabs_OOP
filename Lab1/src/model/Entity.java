@@ -1,4 +1,4 @@
-package BusinessModel;
+package model;
 
 public class Entity {
 

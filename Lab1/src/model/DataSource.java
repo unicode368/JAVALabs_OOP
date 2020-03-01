@@ -1,4 +1,4 @@
-package BusinessModel;
+package model;
 
 public class DataSource {
     public Entity[] generateArray(int n) {
