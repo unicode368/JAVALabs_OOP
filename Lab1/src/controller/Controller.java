@@ -42,10 +42,12 @@ public class Controller {
     }
 
     public void askForData() {
+        String size = input.option();
         view.arraySize();
-        while (!validator.checkArraySize(input.option())) {
-
+        while (!validator.checkArraySize(size)) {
+            size = input.option();
         }
+        choosenTask.setList(dataSource.generateArray(Integer.parseInt(size)));
     }
 
     public void sendResult(Entity[] result) {

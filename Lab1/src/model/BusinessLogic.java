@@ -9,6 +9,7 @@ public class BusinessLogic {
     private Controller request;
 
     public void execute(int option) {
+        request = new Controller();
         request.askForData();
         if (option == 1) {
             result = task1();
@@ -19,8 +20,13 @@ public class BusinessLogic {
     }
 
     private Entity[] task1() {
-        int n = 0;
-       result = new Entity[n];
+        int resultSize = 0;
+        for (int i = 0; i < list.length; i++) {
+            if (list[i].getSitsNumber()[0] > 0) {
+                resultSize++;
+            }
+        }
+       result = new Entity[resultSize];
        return result;
     }
 

@@ -5,9 +5,13 @@ public class Entity {
     private String finalDestination;
     private int trainNumber;
     private Time departureTime;
-    private int[] placeNumber;
+    private int[] sitsNumber;
 
     Entity() {
-        placeNumber = new int[4];
+        sitsNumber = new int[4];
+    }
+
+    public int[] getSitsNumber() {
+        return sitsNumber;
     }
 }
