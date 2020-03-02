@@ -10,4 +10,8 @@ public class OutputStream {
     public String toString() {
         return null;
     }
+
+    public void setList(Entity[] list) {
+        this.list = list;
+    }
 }

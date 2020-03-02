@@ -4,26 +4,27 @@ import controller.Controller;
 
 public class BusinessLogic {
 
-    Entity[] list;
-    Entity[] result;
-    Controller request;
+    private Entity[] list;
+    private Entity[] result;
+    private Controller request;
 
-    public Entity[] execute(int option) {
+    public void execute(int option) {
+        request.askForData();
         if (option == 1) {
-            return task1();
+            result = task1();
         } else {
-            return task2();
+            result = task2();
         }
-
+        request.sendResult(result);
     }
 
-    public Entity[] task1() {
+    private Entity[] task1() {
         int n = 0;
        result = new Entity[n];
        return result;
     }
 
-    public Entity[] task2() {
+    private Entity[] task2() {
         int n = 0;
         result = new Entity[n];
         return result;

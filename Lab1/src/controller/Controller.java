@@ -3,6 +3,7 @@ package controller;
 import model.BusinessLogic;
 import model.DataSource;
 import View.ProgramView;
+import model.Entity;
 
 public class Controller {
 
@@ -13,6 +14,7 @@ public class Controller {
     private ProgramView view;
     private BusinessLogic choosenTask;
     private DataSource dataSource;
+    private OutputStream output;
 
     public Controller() {
         start = new ProgramView();
@@ -20,6 +22,7 @@ public class Controller {
         validator = new Validator();
         view = new ProgramView();
         choosenTask = new BusinessLogic();
+        output = new OutputStream();
     }
 
     public void run() {
@@ -41,6 +44,21 @@ public class Controller {
     public void askForData() {
         view.arraySize();
         while (!validator.checkOption(input.option())) {
+        }
+    }
+
+    public void sendResult(Entity[] result) {
+        output.setList(result);
+        view.result(option);
+    }
+
+    public void invalidArraySize(String errorType) {
+        switch (errorType) {
+            case "not numeric": view.notNumeric();
+            break;
+            case "negative number": view.negativeNumber();
+            break;
+            case "not inrteger": view.notInteger();
 
         }
     }

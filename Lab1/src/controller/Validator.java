@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 public class Validator {
 
     private Pattern pattern;
+    private Controller error;
 
     Validator() {
         pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
@@ -18,21 +19,21 @@ public class Validator {
     }
 
     boolean checkOption(String option) {
-        if (!isNumeric(option)) {
-            return false;
-        } else if (!option.equals("1") & !option.equals("2")) {
-            return false;
-        }
-        return true;
+        return isNumeric(option) & (option.equals("1") | option.equals("2"));
     }
 
     boolean checkArraySize(String size) {
-        if () {
-
-        } else if () {
-
-        } else if () {
-
+        if (!isNumeric(size)) {
+            error.invalidArraySize("not numeric");
+            return false;
+        }
+        float numeric = Float.parseFloat(size);
+        if (numeric <= 0) {
+            error.invalidArraySize("negative number");
+            return false;
+        } else if (numeric % 1 != 0) {
+            error.invalidArraySize("not integer");
+            return false;
         }
         return true;
     }
