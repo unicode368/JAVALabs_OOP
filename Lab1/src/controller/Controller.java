@@ -43,7 +43,8 @@ public class Controller {
 
     public void askForData() {
         view.arraySize();
-        while (!validator.checkOption(input.option())) {
+        while (!validator.checkArraySize(input.option())) {
+
         }
     }
 
