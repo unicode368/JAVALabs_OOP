@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 public class Validator {
 
     private Pattern pattern;
-    private Controller error;
 
     Validator() {
         pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
@@ -23,16 +22,9 @@ public class Validator {
     }
 
     boolean checkArraySize(String size) {
+        Controller error = new Controller();
         if (!isNumeric(size)) {
-            error.invalidArraySize("not numeric");
-            return false;
-        }
-        float numeric = Float.parseFloat(size);
-        if (numeric <= 0) {
-            error.invalidArraySize("negative number");
-            return false;
-        } else if (numeric % 1 != 0) {
-            error.invalidArraySize("not integer");
+            error.invalidArraySize();
             return false;
         }
         return true;

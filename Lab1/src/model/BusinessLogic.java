@@ -4,39 +4,67 @@ import controller.Controller;
 
 public class BusinessLogic {
 
-    private Entity[] list;
-    private Entity[] result;
-    private Controller request;
+    private static Entity[] list;
+    private static Entity[] result;
 
     public void execute(int option) {
-        request = new Controller();
-        request.askForData();
+        Controller request = new Controller();
+        request.askForData(option);
         if (option == 1) {
-            result = task1();
+            result = generalPlaces();
         } else {
-            result = task2();
+            result = searchByPlaceAndTime();
         }
-        request.sendResult(result);
+        request.sendResult(result, option);
     }
 
-    private Entity[] task1() {
-        int resultSize = 0;
-        for (int i = 0; i < list.length; i++) {
-            if (list[i].getSitsNumber()[0] > 0) {
-                resultSize++;
-            }
-        }
-       result = new Entity[resultSize];
+    private Entity[] generalPlaces() {
+       int resultSize = 0;
+       result = new Entity[defineResultSize(resultSize, 1)];
+       addResults(1);
        return result;
     }
 
-    private Entity[] task2() {
-        int n = 0;
-        result = new Entity[n];
+    private Entity[] searchByPlaceAndTime() {
+        int resultSize = 0;
+        result = new Entity[defineResultSize(resultSize, 2)];
+        addResults(2);
         return result;
     }
 
     public void setList(Entity[] list) {
-        this.list = list;
+        BusinessLogic.list = list;
+    }
+
+    public int defineResultSize(int resultSize, int option) {
+        if (option == 1) {
+            for (Entity aList : list) {
+                if (aList.getSitsNumber()[0] > 0) {
+                    resultSize++;
+                }
+            }
+        } else {
+            for (Entity aList : list) {
+                if (aList.getSitsNumber()[0] > 0) {
+                    resultSize++;
+                }
+            }
+        }
+        return resultSize;
+    }
+
+    public void addResults(int option) {
+        int j = 0;
+        if (option == 1) {
+            for (Entity aList : list) {
+                if (aList.getSitsNumber()[0] > 0) {
+                    result[j] = aList;
+                    j++;
+                }
+            }
+        } else {
+
+        }
+
     }
 }

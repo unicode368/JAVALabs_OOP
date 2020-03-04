@@ -2,7 +2,7 @@ package controller;
 
 import model.BusinessLogic;
 import model.DataSource;
-import View.ProgramView;
+import view.ProgramView;
 import model.Entity;
 
 public class Controller {
@@ -41,28 +41,22 @@ public class Controller {
         option = Integer.parseInt(userOption);
     }
 
-    public void askForData() {
-        String size = input.option();
+    public void askForData(int option) {
+        dataSource = new DataSource();
         view.arraySize();
+        String size = input.option();
         while (!validator.checkArraySize(size)) {
             size = input.option();
         }
         choosenTask.setList(dataSource.generateArray(Integer.parseInt(size)));
     }
 
-    public void sendResult(Entity[] result) {
+    public void sendResult(Entity[] result, int option) {
         output.setList(result);
-        view.result(option);
+        view.result(option, output);
     }
 
-    public void invalidArraySize(String errorType) {
-        switch (errorType) {
-            case "not numeric": view.notNumeric();
-            break;
-            case "negative number": view.negativeNumber();
-            break;
-            case "not inrteger": view.notInteger();
-
-        }
+    public void invalidArraySize() {
+        view.invalidArraySize();
     }
 }

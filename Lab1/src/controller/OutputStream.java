@@ -4,11 +4,31 @@ import model.Entity;
 
 public class OutputStream {
 
-    Entity[] list;
+    private Entity[] list;
+
+    OutputStream() {
+
+    }
 
     @Override
     public String toString() {
-        return null;
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < list.length; i++) {
+            result.append(trainInfo(list[i]));
+        }
+        return result.toString();
+    }
+
+    public String trainInfo(Entity train) {
+        return "\nНомер: " + train.getTrainNumber() +
+                "\nПункт призначення: " + train.getTrainNumber() +
+                "\nЧас відправлення: " + train.getDepartureTime() +
+                "\nК-сть місць, серед яких:" +
+                 "\n    загальних: " + train.getSitsNumber()[0] +
+                 "\n    плацкарт: " + train.getSitsNumber()[1] +
+                 "\n    купе: " + train.getSitsNumber()[2] +
+                 "\n    СВ: " + train.getSitsNumber()[3] + "\n";
+
     }
 
     public void setList(Entity[] list) {
