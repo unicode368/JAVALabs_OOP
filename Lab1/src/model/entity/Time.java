@@ -1,16 +1,16 @@
-package model;
+package model.entity;
 
 public class Time {
 
     private int hours;
     private int minutes;
 
-    Time(String time) {
+    public Time(String time) {
         hours = Integer.parseInt(time.split(":")[0]);
         minutes = Integer.parseInt(time.split(":")[1]);
     }
 
-    public boolean compare(Time time1, Time time2) {
+    public static boolean compare(Time time1, Time time2) {
         if (time1.hours < time2.hours) {
             return true;
         } else {
@@ -19,6 +19,13 @@ public class Time {
     }
 
     public String toString() {
+        if (hours < 10 && minutes < 10) {
+            return "0" + hours + ":" + "0" + minutes;
+        } else if (hours < 10) {
+            return "0" + hours + ":" + minutes;
+        } else if (minutes < 10) {
+            return hours + ":"+ "0" + minutes;
+        }
         return hours + ":" + minutes;
     }
 }

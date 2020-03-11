@@ -1,5 +1,7 @@
 package model;
 
+import model.entity.Entity;
+
 public class DataSource {
 
     private final String[] finalDestination = {"Київ", "Чернігів", "Одеса", "Суми", "Харків", "Черкаси",

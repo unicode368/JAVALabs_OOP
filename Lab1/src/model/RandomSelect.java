@@ -1,5 +1,7 @@
 package model;
 
+import model.entity.Time;
+
 import java.util.Random;
 
 public class RandomSelect {

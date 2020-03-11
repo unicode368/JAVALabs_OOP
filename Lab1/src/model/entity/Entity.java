@@ -1,4 +1,4 @@
-package model;
+package model.entity;
 
 public class Entity {
 
@@ -7,14 +7,14 @@ public class Entity {
     private Time departureTime;
     private int[] sitsNumber;
 
-    Entity() {
+    public Entity() {
         sitsNumber = new int[]{0, 0, 0, 0};
         finalDestination = null;
         trainNumber = "000";
         departureTime = new Time("0:00");
     }
 
-    Entity(String finalDestination, String trainNumber, Time departureTime, int[] sitsNumber) {
+    public Entity(String finalDestination, String trainNumber, Time departureTime, int[] sitsNumber) {
         this.finalDestination = finalDestination;
         this.trainNumber = trainNumber;
         this.departureTime = departureTime;

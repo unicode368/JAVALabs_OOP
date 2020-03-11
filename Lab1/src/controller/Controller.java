@@ -1,34 +1,32 @@
 package controller;
 
 import model.BusinessLogic;
-import model.DataSource;
 import view.ProgramView;
-import model.Entity;
+import model.entity.Entity;
 
 public class Controller {
 
     private int option;
-    private ProgramView start;
     private InputStream input;
     private Validator validator;
     private ProgramView view;
-    private BusinessLogic choosenTask;
-    private DataSource dataSource;
-    private OutputStream output;
 
     public Controller() {
-        start = new ProgramView();
         input = new InputStream();
         validator = new Validator();
         view = new ProgramView();
-        choosenTask = new BusinessLogic();
-        output = new OutputStream();
     }
 
     public void run() {
-        start.show();
-        setOption(input.option());
-        choosenTask.execute(option);
+        while (true) {
+            view.show();
+            setOption(input.option());
+            if (option == 0) {
+                System.exit(0);
+            }
+            new BusinessLogic().execute(option);
+        }
+
     }
 
 
@@ -41,22 +39,61 @@ public class Controller {
         option = Integer.parseInt(userOption);
     }
 
-    public void askForData(int option) {
-        dataSource = new DataSource();
-        view.arraySize();
-        String size = input.option();
-        while (!validator.checkArraySize(size)) {
-            size = input.option();
+    public void askForMessages(String message) {
+        switch (message) {
+            case "array size": view.arraySize();
+            break;
+            case "time": view.time();
+            break;
+            case "final destination": view.finalDestination();
+            break;
+            default: view.invalidAction();
+            break;
         }
-        choosenTask.setList(dataSource.generateArray(Integer.parseInt(size)));
     }
 
+    public String validateArraySize(String size) {
+        while (!validator.checkArraySize(size)) {
+            invalidInput("invalid array size");
+            size = input.option();
+        }
+        return size;
+    }
+
+    public String validateFinalDestination(String destination) {
+        while (!validator.isCity(destination)) {
+            invalidInput("invalid final destination");
+            destination = input.option();
+        }
+        return destination;
+    }
+
+    public String validateTime(String time) {
+        while (!validator.isTimeFormat(time)) {
+            invalidInput("invalid time");
+            time = input.option();
+        }
+        return time;
+    }
+
+
     public void sendResult(Entity[] result, int option) {
-        output.setList(result);
+        OutputStream output = new OutputStream(result);
         view.result(option, output);
     }
 
-    public void invalidArraySize() {
-        view.invalidArraySize();
+    public void invalidInput(String input) {
+        switch (input) {
+            case "invalid array size": view.invalidArraySize();
+                break;
+            case "invalid time": view.invalidTime();
+                break;
+            case "invalid final destination": view.finalDestination();
+                break;
+            default: view.invalidAction();
+                break;
+        }
+
     }
+
 }
