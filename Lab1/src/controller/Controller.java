@@ -27,6 +27,7 @@ public class Controller {
                 break;
                 case 2: sendResult(businessLogic.searchByPlaceAndTime(defineTime(),
                         defineFinalDestination()), 2);
+                break;
             }
         }
     }
