@@ -1,99 +1,115 @@
 package controller;
 
 import model.BusinessLogic;
+import model.entity.Time;
 import view.ProgramView;
 import model.entity.Entity;
 
 public class Controller {
 
-    private int option;
-    private InputStream input;
-    private Validator validator;
     private ProgramView view;
+    private Input input;
+    private BusinessLogic businessLogic;
 
     public Controller() {
-        input = new InputStream();
-        validator = new Validator();
+        input = new Input();
         view = new ProgramView();
+        businessLogic = new BusinessLogic(defineSize());
     }
 
     public void run() {
+        printAllTrains(businessLogic.getList());
         while (true) {
             view.show();
-            setOption(input.option());
-            if (option == 0) {
-                System.exit(0);
+            switch (defineOption(input.getUserInput())) {
+                case 0: System.exit(0);
+                case 1: sendResult(businessLogic.getTrainsWithGeneralPlaces(),1 );
+                break;
+                case 2: sendResult(businessLogic.searchByPlaceAndTime(defineTime(),
+                        defineFinalDestination()), 2);
             }
-            new BusinessLogic().execute(option);
         }
-
     }
 
-
-
-    public void setOption(String userOption) {
-        while (!validator.checkOption(userOption)) {
-            view.wrongOption();
-            userOption = input.option();
+    public int defineOption(String userOption) {
+        while (!Validator.checkOption(userOption)) {
+            view.printMessage(view.WRONG_OPTION);
+            userOption = input.getUserInput();
         }
-        option = Integer.parseInt(userOption);
+        return Integer.parseInt(userOption);
     }
 
     public void askForMessages(String message) {
         switch (message) {
-            case "array size": view.arraySize();
+            case "array size": view.printMessage(view.ARRAY_SIZE);
             break;
-            case "time": view.time();
+            case "time": view.printMessage(view.TIME);
             break;
-            case "final destination": view.finalDestination();
+            case "final destination": view.printMessage(view.FINAL_DESTINATION);
             break;
-            default: view.invalidAction();
+            default: view.printMessage(view.INVALID_ACTION);
             break;
         }
     }
-
-    public String validateArraySize(String size) {
-        while (!validator.checkArraySize(size)) {
-            invalidInput("invalid array size");
-            size = input.option();
-        }
-        return size;
-    }
-
-    public String validateFinalDestination(String destination) {
-        while (!validator.isCity(destination)) {
-            invalidInput("invalid final destination");
-            destination = input.option();
-        }
-        return destination;
-    }
-
-    public String validateTime(String time) {
-        while (!validator.isTimeFormat(time)) {
-            invalidInput("invalid time");
-            time = input.option();
-        }
-        return time;
-    }
-
 
     public void sendResult(Entity[] result, int option) {
-        OutputStream output = new OutputStream(result);
-        view.result(option, output);
+        Converter converter = new Converter(result);
+        switch (option) {
+            case 1: view.result(view.TRAINS_WITH_GENERAL_PLACES, converter);
+            break;
+            case 2: view.result(view.SEARCHED_BY_PLACE_AND_TIME, converter);
+            break;
+            default: view.result(view.TRAIN_LIST, converter);
+            break;
+        }
     }
 
     public void invalidInput(String input) {
         switch (input) {
-            case "invalid array size": view.invalidArraySize();
+            case "invalid array size": view.printMessage(view.INVALID_ARRAY_SIZE);
                 break;
-            case "invalid time": view.invalidTime();
+            case "invalid time": view.printMessage(view.INVALID_TIME);
                 break;
-            case "invalid final destination": view.finalDestination();
+            case "invalid final destination": view.printMessage(view.INVALID_DESTINATION);
                 break;
-            default: view.invalidAction();
+            default: view.printMessage(view.INVALID_ACTION);
                 break;
         }
+    }
 
+    public int defineSize() {
+        askForMessages("array size");
+        String size = input.getUserInput();
+        while (!Validator.checkArraySize(size)) {
+            invalidInput("invalid array size");
+            size = input.getUserInput();
+        }
+        return Integer.parseInt(size);
+    }
+
+    public String defineFinalDestination() {
+        askForMessages("final destination");
+        String destination = input.getUserInput();
+        while (!Validator.isCity(destination)) {
+            invalidInput("invalid final destination");
+            destination = input.getUserInput();
+        }
+        return destination;
+    }
+
+    public Time defineTime() {
+        askForMessages("time");
+        String time = input.getUserInput();
+        while (!Validator.isTimeFormat(time)) {
+            invalidInput("invalid time");
+            time = input.getUserInput();
+        }
+        return new Time(time);
+    }
+
+    public void printAllTrains(Entity[] list) {
+        Converter converter = new Converter(list);
+        view.result(view.TRAIN_LIST, converter);
     }
 
 }

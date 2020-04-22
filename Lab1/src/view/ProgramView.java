@@ -1,8 +1,22 @@
 package view;
 
-import controller.OutputStream;
+import controller.Converter;
 
 public class ProgramView {
+
+    public final String WRONG_OPTION = "Невірно введені дані. Будь ласка, оберіть одну з опцій 1 або 2.";
+    public final String ARRAY_SIZE = "Введіть кількість поїздів:";
+    public final String INVALID_ARRAY_SIZE = "Розмір масиву повинен бути додатнім цілим числом.";
+    public final String INVALID_TIME = "Невірно введений час. Будь ласка, спробуйте  ще раз.";
+    public final String TIME = "Введіть час:";
+    public final String FINAL_DESTINATION = "Введіть пункт призначення:";
+    public final String INVALID_ACTION = "WARNING!!!INVALID ACTION HAS BEEN DETECTED";
+    public final String INVALID_DESTINATION = "Невірно введений пункт призначення. Будь ласка, " +
+            "спробуйте  ще раз.";
+    public final String TRAINS_WITH_GENERAL_PLACES = "Поїзди, які мають загальні місця:";
+    public final String SEARCHED_BY_PLACE_AND_TIME = "Поїзди, які слідують до заданого пункту " +
+            "призначення та відправляються після заданого часу";
+    public final String TRAIN_LIST = "Список поїздів:";
 
     public ProgramView() {
 
@@ -14,42 +28,13 @@ public class ProgramView {
                 " після заданого часу" + "\n0. Завершити роботу");
     }
 
-    public void wrongOption() {
-        System.out.println("Невірно введені дані. Будь ласка, оберіть одну з опцій 1 або 2.");
+    public void printMessage(String message) {
+        System.out.println(message);
     }
 
-    public void arraySize() {
-        System.out.println("Введіть кількість поїздів:");
-    }
-
-    public void invalidArraySize() {
-        System.out.println("Розмір масиву повинен бути додатнім цілим числом.");
-    }
-
-    public void invalidTime() {
-        System.out.println("Невірно введений час. Будь ласка, спробуйте  ще раз.");
-    }
-
-    public void result(int option, OutputStream output) {
-        if (option == 1) {
-            System.out.println("Поїзди, які мають загальні місця:");
-        } else {
-            System.out.println("Поїзди, які слідують до заданого пункту призначення та відправляються після " +
-                    "заданого часу");
-        }
-        System.out.println(output.toString());
-    }
-
-    public void time() {
-        System.out.println("Введіть час:");
-    }
-
-    public void finalDestination() {
-        System.out.println("Введіть пункт призначення:");
-    }
-
-    public void invalidAction() {
-        System.out.println("WARNING!!!INVALID ACTION HAS BEEN DETECTED");
+    public void result(String message, Converter converter) {
+        System.out.println(message);
+        System.out.println(converter.toString());
     }
 
 }

@@ -36,20 +36,4 @@ public class Entity {
     public Time getDepartureTime() {
         return departureTime;
     }
-
-    public void setFinalDestination(String finalDestination) {
-        this.finalDestination = finalDestination;
-    }
-
-    public void setTrainNumber(String trainNumber) {
-        this.trainNumber = trainNumber;
-    }
-
-    public void setDepartureTime(Time departureTime) {
-        this.departureTime = departureTime;
-    }
-
-    public void setSitsNumber(int[] sitsNumber) {
-        this.sitsNumber = sitsNumber;
-    }
 }

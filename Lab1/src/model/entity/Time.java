@@ -5,6 +5,11 @@ public class Time {
     private int hours;
     private int minutes;
 
+    public Time() {
+        hours = 0;
+        minutes = 0;
+    }
+
     public Time(String time) {
         hours = Integer.parseInt(time.split(":")[0]);
         minutes = Integer.parseInt(time.split(":")[1]);
