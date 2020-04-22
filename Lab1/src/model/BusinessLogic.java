@@ -5,7 +5,7 @@ import model.entity.Time;
 
 public class BusinessLogic {
 
-    private static Entity[] list;
+    private Entity[] list;
 
     public BusinessLogic(int size) {
         list = new DataSource().generateArray(size);
