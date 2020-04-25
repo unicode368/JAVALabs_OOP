@@ -6,9 +6,11 @@ import model.entity.Time;
 public class BusinessLogic {
 
     private Entity[] list;
+    private DataSource source;
 
-    public BusinessLogic(int size) {
-        list = new DataSource().generateArray(size);
+    public BusinessLogic() {
+        source = new DataSource();
+        list = source.generateArray();
     }
 
     public Entity[] getTrainsWithGeneralPlaces() {

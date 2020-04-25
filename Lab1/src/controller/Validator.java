@@ -1,5 +1,8 @@
 package controller;
 
+import model.exceptions.InvalidFinalDestinationException;
+import model.exceptions.InvalidTimeException;
+
 import java.util.regex.Pattern;
 
 public class Validator {
@@ -12,32 +15,34 @@ public class Validator {
         if (strNum == null) {
             return false;
         }
-        return Pattern.compile("-?\\d+(\\.\\d+)?").matcher(strNum).matches();
+        return Pattern.compile("\\d").matcher(strNum).matches();
     }
 
-    static boolean isTimeFormat(String time) {
-        if (!time.contains(":")) {
-            return false;
-        } else if (time.split(":").length != 2) {
+    public static boolean hasDigitsOrSpecialCharacters(String str) {
+        if (str == null) {
             return false;
         }
-        String hours = time.split(":")[0];
-        String minutes = time.split(":")[1];
-        if ((!isNumeric(hours) && !isNumeric(minutes)) || !isNumeric(hours)
-                || !isNumeric(hours)) {
-            return false;
-        } else if (Integer.parseInt(hours) >= 24 || Integer.parseInt(hours) < 0) {
-            return false;
-        } else {
-            return (Integer.parseInt(minutes) <= 59 && Integer.parseInt(minutes) >= 0);
+        return Pattern.compile(".*http://.*", Pattern.CASE_INSENSITIVE).matcher(str).matches();
+    }
+
+    static void isTimeFormat(String time) throws InvalidTimeException {
+        if (!Pattern.matches("^\\d{1,2}(:\\d{2})?$",time)) {
+           throw new InvalidTimeException("Невірний формат часу: hh:mm. Будь ласка, спробуйте" +
+                   "ще");
+        }
+        int hours = Integer.parseInt(time.split(":")[0]);
+        int minutes = Integer.parseInt(time.split(":")[1]);
+        if (hours >= 24 || hours < 0) {
+            throw new InvalidTimeException("Години мають бути додатнім числом яке не більше 23");
+        } else if (minutes > 59 || minutes < 0){
+            throw new InvalidTimeException("Хвилини мають бути додатнім числом яке не більше 59");
         }
     }
 
-    static boolean isCity(String city) {
-        if (isNumeric(city)) {
-            return false;
+    static void isCity(String city) throws InvalidFinalDestinationException {
+        if (hasDigitsOrSpecialCharacters(city)) {
+            throw new InvalidTimeException("");
         }
-        return true;
     }
 
     static boolean checkOption(String option) {
@@ -45,7 +50,4 @@ public class Validator {
                 option.equals("0"));
     }
 
-    static boolean checkArraySize(String size) {
-        return isNumeric(size);
-    }
 }
