@@ -4,6 +4,7 @@ import controller.Converter;
 
 public class ProgramView {
 
+<<<<<<< Updated upstream
     public final String WRONG_OPTION = "Невірно введені дані. Будь ласка, оберіть одну з опцій 1 або 2.";
     public final String ARRAY_SIZE = "Введіть кількість поїздів:";
     public final String INVALID_ARRAY_SIZE = "Розмір масиву повинен бути додатнім цілим числом.";
@@ -13,6 +14,10 @@ public class ProgramView {
     public final String INVALID_ACTION = "WARNING!!!INVALID ACTION HAS BEEN DETECTED";
     public final String INVALID_DESTINATION = "Невірно введений пункт призначення. Будь ласка, " +
             "спробуйте  ще раз.";
+=======
+    public final String TIME = "Введіть час:";
+    public final String FINAL_DESTINATION = "Введіть пункт призначення:";
+>>>>>>> Stashed changes
     public final String TRAINS_WITH_GENERAL_PLACES = "Поїзди, які мають загальні місця:";
     public final String SEARCHED_BY_PLACE_AND_TIME = "Поїзди, які слідують до заданого пункту " +
             "призначення та відправляються після заданого часу";

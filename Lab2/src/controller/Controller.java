@@ -2,6 +2,15 @@ package controller;
 
 import model.BusinessLogic;
 import model.entity.Time;
+<<<<<<< Updated upstream
+=======
+<<<<<<<< Updated upstream:Lab2/src/controller/Controller.java
+import model.exceptions.InvalidFinalDestinationException;
+import model.exceptions.InvalidOptionException;
+import model.exceptions.InvalidTimeException;
+========
+>>>>>>>> Stashed changes:Lab1/src/controller/Controller.java
+>>>>>>> Stashed changes
 import view.ProgramView;
 import model.entity.Entity;
 
@@ -21,7 +30,11 @@ public class Controller {
         printAllTrains(businessLogic.getList());
         while (true) {
             view.show();
+<<<<<<< Updated upstream
             switch (defineOption(input.getUserInput())) {
+=======
+            switch (defineOption()) {
+>>>>>>> Stashed changes
                 case 0: System.exit(0);
                 case 1: sendResult(businessLogic.getTrainsWithGeneralPlaces(),1 );
                 break;
@@ -32,6 +45,7 @@ public class Controller {
         }
     }
 
+<<<<<<< Updated upstream
     public int defineOption(String userOption) {
         while (!Validator.checkOption(userOption)) {
             view.printMessage(view.WRONG_OPTION);
@@ -53,6 +67,23 @@ public class Controller {
         }
     }
 
+=======
+    public int defineOption() {
+        while (true) {
+            String userOption = input.getUserInput();
+            try {
+                Validator.checkOption(userOption);
+            } catch (InvalidOptionException e) {
+                view.printError(e.getMessage());
+                continue;
+            }
+            return Integer.parseInt(userOption);
+        }
+
+    }
+
+
+>>>>>>> Stashed changes
     public void sendResult(Entity[] result, int option) {
         Converter converter = new Converter(result);
         switch (option) {
@@ -65,6 +96,22 @@ public class Controller {
         }
     }
 
+<<<<<<< Updated upstream
+=======
+<<<<<<<< Updated upstream:Lab2/src/controller/Controller.java
+    public String defineFinalDestination() {
+        view.printMessage(view.FINAL_DESTINATION);
+        while (true) {
+            String destination = input.getUserInput();
+            try {
+                Validator.isCity(destination);
+            } catch (InvalidFinalDestinationException e) {
+                view.printError(e.getMessage());
+                continue;
+            }
+            return destination;
+========
+>>>>>>> Stashed changes
     public void invalidInput(String input) {
         switch (input) {
             case "invalid array size": view.printMessage(view.INVALID_ARRAY_SIZE);
@@ -94,16 +141,39 @@ public class Controller {
         while (!Validator.isCity(destination)) {
             invalidInput("invalid final destination");
             destination = input.getUserInput();
+<<<<<<< Updated upstream
+=======
+>>>>>>>> Stashed changes:Lab1/src/controller/Controller.java
+>>>>>>> Stashed changes
         }
         return destination;
     }
 
     public Time defineTime() {
+<<<<<<< Updated upstream
+=======
+<<<<<<<< Updated upstream:Lab2/src/controller/Controller.java
+        view.printMessage(view.TIME);
+        while (true) {
+            String time = input.getUserInput();
+            try {
+                Validator.isTimeFormat(time);
+            } catch (InvalidTimeException e) {
+                view.printError(e.getMessage());
+                continue;
+            }
+            return new Time(time);
+========
+>>>>>>> Stashed changes
         askForMessages("time");
         String time = input.getUserInput();
         while (!Validator.isTimeFormat(time)) {
             invalidInput("invalid time");
             time = input.getUserInput();
+<<<<<<< Updated upstream
+=======
+>>>>>>>> Stashed changes:Lab1/src/controller/Controller.java
+>>>>>>> Stashed changes
         }
         return new Time(time);
     }
