@@ -41,4 +41,14 @@ public class RandomSelect {
         }
         return places;
     }
+<<<<<<< Updated upstream
+=======
+<<<<<<<< Updated upstream:Lab2/src/model/RandomSelect.java
+
+    public static int size() {
+        return new Random().nextInt(10) + 1;
+    }
+========
+>>>>>>>> Stashed changes:Lab1/src/model/RandomSelect.java
+>>>>>>> Stashed changes
 }
