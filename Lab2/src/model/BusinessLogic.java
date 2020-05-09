@@ -7,18 +7,8 @@ public class BusinessLogic {
 
     private Entity[] list;
 
-<<<<<<< Updated upstream
-    public BusinessLogic(int size) {
-        list = new DataSource().generateArray(size);
-=======
-<<<<<<<< Updated upstream:Lab2/src/model/BusinessLogic.java
     public BusinessLogic() {
         list = new DataSource().generateArray();
-========
-    public BusinessLogic(int size) {
-        list = new DataSource().generateArray(size);
->>>>>>>> Stashed changes:Lab1/src/model/BusinessLogic.java
->>>>>>> Stashed changes
     }
 
     public Entity[] getTrainsWithGeneralPlaces() {

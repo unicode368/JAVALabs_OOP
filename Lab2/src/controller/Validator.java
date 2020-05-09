@@ -1,59 +1,23 @@
 package controller;
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 import java.util.regex.Pattern;
-
-public class Validator {
-=======
-=======
-import java.util.regex.Pattern;
->>>>>>> Stashed changes
-<<<<<<<< Updated upstream:Lab2/src/controller/Validator.java
 import model.exceptions.InvalidFinalDestinationException;
 import model.exceptions.InvalidOptionException;
 import model.exceptions.InvalidTimeException;
 
-<<<<<<< Updated upstream
-========
->>>>>>>> Stashed changes:Lab1/src/controller/Validator.java
-import java.util.regex.Pattern;
-
 class Validator {
->>>>>>> Stashed changes
-=======
-class Validator {
-========
-
-public class Validator {
->>>>>>>> Stashed changes:Lab1/src/controller/Validator.java
->>>>>>> Stashed changes
 
     Validator() {
 
     }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    public static boolean isNumeric(String strNum) {
-=======
     private static boolean isNumeric(String strNum) {
->>>>>>> Stashed changes
-=======
-    private static boolean isNumeric(String strNum) {
->>>>>>> Stashed changes
         if (strNum == null) {
             return false;
         }
         return Pattern.compile("-?\\d+(\\.\\d+)?").matcher(strNum).matches();
     }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-<<<<<<<< Updated upstream:Lab2/src/controller/Validator.java
     private static boolean hasDigitsOrSpecialCharacters(String str) {
         if (str == null) {
             return true;
@@ -84,65 +48,15 @@ public class Validator {
         if (hasDigitsOrSpecialCharacters(city)) {
             throw new InvalidFinalDestinationException("Невірно введено пункт призначення. " +
                     "Будь ласка, спробуйте ще");
-========
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-    static boolean isTimeFormat(String time) {
-        if (!time.contains(":")) {
-            return false;
-        } else if (time.split(":").length != 2) {
-            return false;
-        }
-        String hours = time.split(":")[0];
-        String minutes = time.split(":")[1];
-        if ((!isNumeric(hours) && !isNumeric(minutes)) || !isNumeric(hours)
-                || !isNumeric(hours)) {
-            return false;
-        } else if (Integer.parseInt(hours) >= 24 || Integer.parseInt(hours) < 0) {
-            return false;
-        } else {
-            return (Integer.parseInt(minutes) <= 59 && Integer.parseInt(minutes) >= 0);
         }
     }
 
-    static boolean isCity(String city) {
-        if (isNumeric(city)) {
-            return false;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
->>>>>>>> Stashed changes:Lab1/src/controller/Validator.java
->>>>>>> Stashed changes
-=======
->>>>>>>> Stashed changes:Lab1/src/controller/Validator.java
->>>>>>> Stashed changes
-        }
-        return true;
-    }
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    static boolean checkOption(String option) {
-        return isNumeric(option) && (option.equals("1") || option.equals("2") ||
-                option.equals("0"));
-=======
-=======
->>>>>>> Stashed changes
     static void checkOption(String option) throws InvalidOptionException {
         if (!(isNumeric(option) && (option.equals("1") || option.equals("2") ||
                 option.equals("0")))) {
             throw new InvalidOptionException("Опція має бути одним із запропонованих чисел."
             + "Буль ласка, спробуйте ще");
         }
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     }
 
-    static boolean checkArraySize(String size) {
-        return isNumeric(size);
-    }
 }
