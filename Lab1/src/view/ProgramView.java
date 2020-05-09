@@ -32,15 +32,9 @@ public class ProgramView {
         System.out.println(message);
     }
 
-    public void printError(String message) {
-        System.err.println(message);
-    }
-
     public void result(String message, Converter converter) {
         System.out.println(message);
-        System.out.println();
         System.out.println(converter.toString());
-        System.out.println();
     }
 
 }

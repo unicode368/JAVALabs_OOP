@@ -2,8 +2,6 @@ package controller;
 
 import model.BusinessLogic;
 import model.entity.Time;
-import model.exceptions.InvalidFinalDestinationException;
-import model.exceptions.InvalidTimeException;
 import view.ProgramView;
 import model.entity.Entity;
 
@@ -16,7 +14,7 @@ public class Controller {
     public Controller() {
         input = new Input();
         view = new ProgramView();
-        businessLogic = new BusinessLogic();
+        businessLogic = new BusinessLogic(defineSize());
     }
 
     public void run() {
@@ -69,6 +67,10 @@ public class Controller {
 
     public void invalidInput(String input) {
         switch (input) {
+            case "invalid array size": view.printMessage(view.INVALID_ARRAY_SIZE);
+                break;
+            case "invalid time": view.printMessage(view.INVALID_TIME);
+                break;
             case "invalid final destination": view.printMessage(view.INVALID_DESTINATION);
                 break;
             default: view.printMessage(view.INVALID_ACTION);
@@ -76,32 +78,34 @@ public class Controller {
         }
     }
 
+    public int defineSize() {
+        askForMessages("array size");
+        String size = input.getUserInput();
+        while (!Validator.checkArraySize(size)) {
+            invalidInput("invalid array size");
+            size = input.getUserInput();
+        }
+        return Integer.parseInt(size);
+    }
+
     public String defineFinalDestination() {
         askForMessages("final destination");
-        while (true) {
-            String destination = input.getUserInput();
-            try {
-                Validator.isCity(destination);
-            } catch (InvalidFinalDestinationException e) {
-                view.printError(e.getMessage());
-                continue;
-            }
-            return destination;
+        String destination = input.getUserInput();
+        while (!Validator.isCity(destination)) {
+            invalidInput("invalid final destination");
+            destination = input.getUserInput();
         }
+        return destination;
     }
 
     public Time defineTime() {
         askForMessages("time");
-        while (true) {
-            String time = input.getUserInput();
-            try {
-                Validator.isTimeFormat(time);
-            } catch (InvalidTimeException e) {
-                view.printError(e.getMessage());
-                continue;
-            }
-            return new Time(time);
+        String time = input.getUserInput();
+        while (!Validator.isTimeFormat(time)) {
+            invalidInput("invalid time");
+            time = input.getUserInput();
         }
+        return new Time(time);
     }
 
     public void printAllTrains(Entity[] list) {

@@ -41,8 +41,4 @@ public class RandomSelect {
         }
         return places;
     }
-
-    public static int selectArraySize() {
-        return new Random().nextInt(10) + 1;
-    }
 }
