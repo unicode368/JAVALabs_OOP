@@ -9,6 +9,11 @@ import java.util.Scanner;
 
 public class Input {
 
+    private Scanner input;
+
+    public Input() {
+        input = new Scanner(System.in);
+    }
 
     public Entity[] getFile(String filepath) throws IOException {
         String[] lines = Files.readAllLines(new File(filepath).toPath()).toArray(new String[0]);
@@ -19,11 +24,6 @@ public class Input {
         return Trains;
     }
 
-    private Scanner input;
-
-    public Input() {
-        input = new Scanner(System.in);
-    }
 
     public String getUserInput() {
         return input.nextLine();

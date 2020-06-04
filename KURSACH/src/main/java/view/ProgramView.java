@@ -9,7 +9,6 @@ import java.util.Locale;
 public class ProgramView {
 
     ResourceManager language;
-    PrintStream printStream;
 
     public ProgramView() {
         language = ResourceManager.INSTANCE;
@@ -20,7 +19,7 @@ public class ProgramView {
     }
 
     public void printError(String message) {
-        System.err.println(message);
+        System.err.println(language.getString(message));
     }
 
     public void printMessage(String message) {

@@ -1,6 +1,5 @@
 package view;
 
-import java.util.Enumeration;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -23,8 +22,5 @@ public enum ResourceManager {
 
     public String getString(String key) {
         return resourceBundle.getString(key);
-    }
-    public Enumeration getSetKey() {
-        return resourceBundle.getKeys();
     }
 }

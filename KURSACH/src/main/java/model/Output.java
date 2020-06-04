@@ -6,7 +6,6 @@ import java.io.*;
 
 public class Output {
 
-
     public void writeToFile(String location, Entity[] result) throws IOException {
         File file = new File(location);
         try(ObjectOutputStream object_output =

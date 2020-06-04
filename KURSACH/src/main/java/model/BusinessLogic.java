@@ -3,9 +3,6 @@ package model;
 import controller.DataManager;
 import model.entity.Entity;
 import model.entity.Time;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.io.IOException;
 
 public class BusinessLogic {

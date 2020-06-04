@@ -26,7 +26,6 @@ public class Controller {
             input = new Input();
             view = new ProgramView();
             chooseLanguage();
-
             businessLogic = new BusinessLogic();
             logger.info("Файл прочитано.");
             dataManager = new DataManager();
