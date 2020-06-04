@@ -8,8 +8,8 @@ import model.exceptions.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import view.ProgramView;
+
 import java.io.IOException;
-import java.util.Locale;
 
 public class Controller {
 
@@ -18,6 +18,7 @@ public class Controller {
     private Input input;
     private BusinessLogic businessLogic;
     private DataManager dataManager;
+    private boolean en;
 
 
     public Controller() {
@@ -36,7 +37,7 @@ public class Controller {
         }
     }
 
-    public void chooseLanguage() {
+    private void chooseLanguage() {
         logger.debug("Вибір мови...");
         view.printMessage("language");
         while (true) {
@@ -50,6 +51,7 @@ public class Controller {
             }
             if (Integer.parseInt(userOption) == 2) {
                 view.changeDefaultLanguage("en", "EN");
+                en = true;
                 logger.info("Обрана мова - {}", "en");
             }
             break;
@@ -75,7 +77,7 @@ public class Controller {
         }
     }
 
-    public Entity[] checkData(Entity[] data) {
+    private Entity[] checkData(Entity[] data) {
         int i = 1;
         logger.debug("Валідація даних, отриманих з файлу...");
         try {
@@ -108,7 +110,7 @@ public class Controller {
         return data;
     }
 
-    public String getFileLocation(String userFile) {
+    private String getFileLocation(String userFile) {
         try {
             Validator.checkFormat(userFile.substring(userFile.lastIndexOf("\\")));
         } catch (InvalidFileTypeException e) {
@@ -118,7 +120,7 @@ public class Controller {
     }
 
 
-    public int defineOption() {
+    private int defineOption() {
         logger.debug("Введення користувачем опції...");
         while (true) {
             String userOption = input.getUserInput();
@@ -153,7 +155,7 @@ public class Controller {
         logger.info("Запит виконано.");
     }
 
-    public void saveToFileOrNot(Entity[] result) {
+    private void saveToFileOrNot(Entity[] result) {
         logger.info("Очікування рішення користувача щодо збереження результату в файл...");
         view.printMessage("save.to.file.offer");
         String final_response;
@@ -171,7 +173,7 @@ public class Controller {
         }
         while (true) {
             try {
-                if (final_response.equals("так")) {
+                if (final_response.equals((en) ? "yes" : "так")) {
                     logger.debug("Обрано так. Введення шляху до нового файлу...");
                     if (result.length == 0) {
                         logger.warn("УВАГА!Відсутні дані для запису в файл.");
@@ -197,7 +199,7 @@ public class Controller {
     }
 
 
-    public String defineFinalDestination() {
+    private String defineFinalDestination() {
         logger.debug("Введення пункту призначення користувачем...");
         view.printMessage("final.destination");
         while (true) {
@@ -215,7 +217,7 @@ public class Controller {
     }
 
 
-    public Time defineTime() {
+    private Time defineTime() {
         logger.debug("Введення часу користувачем...");
         view.printMessage("time");
         while (true) {
@@ -234,7 +236,7 @@ public class Controller {
         }
     }
 
-    public void printAllTrains(Entity[] list) {
+    private void printAllTrains(Entity[] list) {
         Converter converter = new Converter(list);
         view.result("train.list", converter);
     }

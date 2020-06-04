@@ -38,14 +38,14 @@ public class Converter {
         return result1.toString();
     }
 
-    public String trainInfo(Entity[] trains, int size, int start) {
+    private String trainInfo(Entity[] trains, int size, int start) {
         return getRow(trains, size, start, "TrainNumber") + "\n" +
                 getRow(trains, size, start, "FinalDestination") + "\n" +
                 getRow(trains, size, start, "DepartureTime") + "\n" +
                 getRow(trains, size, start, "SitsNumber");
     }
 
-    public String getRow(Entity[] trains, int size, int start, String kindOfInfo) {
+    private String getRow(Entity[] trains, int size, int start, String kindOfInfo) {
         String row = "";
         switch (kindOfInfo) {
             case "TrainNumber" :
