@@ -3,6 +3,8 @@ package controller;
 import model.Input;
 import model.Output;
 import model.entity.Entity;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
@@ -12,6 +14,7 @@ public class DataManager {
     private Output output;
     private final String FILEPATH = "C:\\Users\\Olya\\Documents\\GitHub\\" +
             "JAVALabs_OOP\\KURSACH\\src\\main\\java\\Book1.csv";
+    private static final Logger logger = LogManager.getLogger("data_manager");
 
     public DataManager() {
         input = new Input();
@@ -19,31 +22,13 @@ public class DataManager {
     }
 
    public Entity[] loadDataFromFile() throws IOException {
+        logger.info("Парсинг файлу...");
        return input.getFile(FILEPATH);
    }
 
    public void writeDataToFile(String location, Entity[] result) throws IOException {
+       logger.info("Запис результату в файл...");
         output.writeToFile(location, result);
    }
 
 }
-
-/*
-       BufferedReader br = new BufferedReader(
-               new InputStreamReader(
-                       new FileInputStream(filename), StandardCharsets.UTF_8));
-       int lineCounter = 0;
-       String line;
-       while (br.readLine() != null) {
-           lineCounter++;
-       }
-       br = new BufferedReader(
-               new InputStreamReader(
-                       new FileInputStream(filename), StandardCharsets.UTF_8));
-       Entity[] trains = new Entity[lineCounter];
-       lineCounter = 0;
-       while ((line = br.readLine()) != null) {
-           trains[lineCounter] = new Entity(line.split(","));
-           lineCounter++;
-       }
-       return trains;*/

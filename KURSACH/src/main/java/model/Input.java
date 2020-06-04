@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class Input {
 
+
     public Entity[] getFile(String filepath) throws IOException {
         String[] lines = Files.readAllLines(new File(filepath).toPath()).toArray(new String[0]);
         Entity[] Trains = new Entity[lines.length];

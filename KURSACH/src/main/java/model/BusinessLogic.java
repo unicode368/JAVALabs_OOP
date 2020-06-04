@@ -11,7 +11,6 @@ import java.io.IOException;
 public class BusinessLogic {
 
     private Entity[] list;
-    private static final Logger logger = LogManager.getLogger("business_logic");
 
     public BusinessLogic() throws IOException {
         list = new DataManager().loadDataFromFile();
