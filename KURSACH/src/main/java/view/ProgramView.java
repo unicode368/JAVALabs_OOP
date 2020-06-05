@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public class ProgramView {
 
-    ResourceManager language;
+    private ResourceManager language;
 
     public ProgramView() {
         language = ResourceManager.INSTANCE;

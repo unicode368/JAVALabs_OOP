@@ -26,7 +26,7 @@ public class DataManager {
        return input.getFile(FILEPATH);
    }
 
-   public void writeDataToFile(String location, Entity[] result) throws IOException {
+   void writeDataToFile(String location, Entity[] result) throws IOException {
        logger.info("Запис результату в файл...");
         output.writeToFile(location, result);
    }

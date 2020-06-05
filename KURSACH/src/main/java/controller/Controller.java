@@ -18,7 +18,7 @@ public class Controller {
     private Input input;
     private BusinessLogic businessLogic;
     private DataManager dataManager;
-    private boolean en;
+    private boolean en = false;
 
 
     public Controller() {
