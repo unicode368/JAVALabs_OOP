@@ -30,54 +30,54 @@ public class Validator {
 
     static void isTimeFormat(String time) throws InvalidTimeException {
         if (!Pattern.matches("^\\d{1,2}(:\\d{2})?$",time)) {
-           throw new InvalidTimeException(language.getString("invalid.time"));
+           throw new InvalidTimeException("invalid.time");
         }
         int hours = Integer.parseInt(time.split(":")[0]);
         int minutes = Integer.parseInt(time.split(":")[1]);
         if (hours >= 24 || hours < 0) {
-            throw new InvalidTimeException(language.getString("invalid.hours"));
+            throw new InvalidTimeException("invalid.hours");
         } else if (minutes > 59 || minutes < 0){
-            throw new InvalidTimeException(language.getString("invalid.minutes"));
+            throw new InvalidTimeException("invalid.minutes");
         }
     }
 
     static void isPositive(int number) throws NegativeNumberOfSitsException {
         if (number < 0) {
             throw new NegativeNumberOfSitsException(language.getString
-                    (language.getString("invalid.number.value")));
+                    ("invalid.number.value"));
         }
     }
 
     static void isCity(String city) throws InvalidFinalDestinationException {
         if (hasDigitsOrSpecialCharacters(city)) {
-            throw new InvalidFinalDestinationException(language.getString("invalid.final.destination"));
+            throw new InvalidFinalDestinationException("invalid.final.destination");
         }
     }
 
     static void checkOption(String option) throws InvalidOptionException {
         if (!(isNumeric(option) && (option.equals("1") || option.equals("2") ||
                 option.equals("0")))) {
-            throw new InvalidOptionException(language.getString("invalid.option"));
+            throw new InvalidOptionException("invalid.option");
         }
     }
 
     static void checkYesOrNoOptions(String option) throws InvalidOptionException {
         if (!option.equals(language.getString("validator.yes")) &
                 !option.equals(language.getString("validator.no"))) {
-            throw new InvalidOptionException(language.getString("invalid.yes.or.no.choice"));
+            throw new InvalidOptionException("invalid.yes.or.no.choice");
         }
     }
 
     static void checkFormat(String filename) {
         if (!(filename.substring(filename.length() - 4).equals(".csv") ||
                 filename.substring(filename.length() - 4).equals(".dat"))) {
-            throw new InvalidFileTypeException(language.getString("invalid.format"));
+            throw new InvalidFileTypeException("invalid.format");
         }
     }
 
     static void checkLanguage(String language) {
         if (!(isNumeric(language) && (language.equals("1") || language.equals("2")))) {
-            throw new InvalidOptionException(Validator.language.getString("invalid.option"));
+            throw new InvalidOptionException("invalid.option");
         }
     }
 
