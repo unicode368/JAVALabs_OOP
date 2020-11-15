@@ -23,7 +23,7 @@ public class UserDAO implements DAO {
 
     @Override
     public User get(int i) {
-        return null;
+        return userBase.getUsers().get(i);
     }
 
     @Override

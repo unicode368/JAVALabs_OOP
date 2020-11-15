@@ -19,6 +19,8 @@ public class AdminView implements ProgramView{
     public final String BOOK_DATA = "Введіть дату видання книги:";
     public final String LOGIN = "Введіть логін:";
     public final String PASSWORD = "Введіть пароль:";
+    public final String USER_EDIT = "Введіть номер користувача, статус якого бажаєте змінити:";
+    public final String USER_LIST = "Поточний список користувачів:";
 
     @Override
     public void print(String message) {

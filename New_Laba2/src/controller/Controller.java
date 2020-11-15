@@ -7,7 +7,6 @@ import model.ObjectType;
 import model.exceptions.BlockedUserException;
 import model.exceptions.InvalidLoginInfo;
 import model.exceptions.InvalidOptionException;
-import util.Tools;
 import view.GeneralView;
 
 import java.util.ArrayList;

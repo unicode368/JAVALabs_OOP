@@ -41,7 +41,7 @@ public class AdminService extends Service {
     public void execute() {
         while (true) {
             view.print(view.ADMIN_WELCOME);
-            int option = defineOption(6);
+            int option = defineOption(0,6);
             switch (option) {
                 case 1: addBook();
                     break;
@@ -62,9 +62,9 @@ public class AdminService extends Service {
         }
     }
 
-    public int defineOption(int end) {
+    public int defineOption(int start, int end) {
         ArrayList<Integer> options = new ArrayList<>();
-        for (int i = 0; i <= end; i++) {
+        for (int i = start; i <= end; i++) {
             options.add(i);
         }
         while (true) {
@@ -128,20 +128,13 @@ public class AdminService extends Service {
     }
 
     public void changeUserStatus() {
+        view.print(view.USER_LIST);
         view.show(userConverter);
-        while (true) {
-            String[] info = getLoginAndPassword();
-            try {
-                Validator.validateLoginAndPassword
-                        (tools.searchUser(info[0], info[1], userDAO.getAll()), Action.LOGIN);
-            } catch (InvalidLoginInfo e) {
-                view.printError(e.getMessage());
-                continue;
-            }
-            tools.searchUser(info[0],info[1] , userDAO.getAll()).setBlocked();
-            view.show(userConverter);
-            break;
-        }
+        view.print(view.USER_EDIT);
+        int number = defineOption(1, userDAO.getAll().size()) - 1;
+        userDAO.get(number).setBlocked();
+        view.print(view.USER_LIST);
+        view.show(userConverter);
     }
 
     private String[] getLoginAndPassword() {
