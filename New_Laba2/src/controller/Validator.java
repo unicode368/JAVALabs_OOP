@@ -64,7 +64,7 @@ public class Validator {
             throw new InvalidLoginInfo("");
         }
     }
-    
+
 
     public static void checkOption(String option, ArrayList<Integer> options) throws InvalidOptionException {
         if (!isNumeric(option) && !options.contains(option)) {

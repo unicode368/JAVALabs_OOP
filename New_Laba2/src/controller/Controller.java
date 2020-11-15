@@ -6,6 +6,7 @@ import model.ObjectType;
 import model.exceptions.BlockedUserException;
 import model.exceptions.InvalidLoginInfo;
 import model.exceptions.InvalidOptionException;
+import util.Tools;
 import view.GeneralView;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class Controller {
     private Input input;
     private Converter book_converter;
     private UserAutorization userAutorization;
+    private Tools tools;
 /*    private UserAutorization userAutorization;
     private Storage storage;
     private Converter user_converter;
@@ -26,6 +28,7 @@ public class Controller {
         input = new Input();
         book_converter = new Converter(ObjectType.BOOK);
         userAutorization = new UserAutorization();
+        tools = new Tools();
 /*        storage = new Storage();
         userBase = new UserBase();
         userAutorization = new UserAutorization(userBase);
@@ -114,99 +117,6 @@ public class Controller {
         loginPassword[1] = password;
         return loginPassword;
     }
-
-    /*private void login() {
-        String[] loginAndPassword = getLoginAndPassword();
-        User user = null;
-        while (true) {
-            try {
-                user = userAutorization.login(loginAndPassword[0],
-                        loginAndPassword[1]);
-            } catch (InvalidLoginInfo e) {
-                view.printError(e.getMessage());
-                continue;
-            } catch (BlockedUserException e) {
-                view.printError(e.getMessage());
-                System.exit(1);
-            }
-            break;
-        }
-        if (user.getRole().equals(Reader.class.getName())) {
-            while (true) {
-                view.printMessage(view.ADMIN_WELCOME);
-                int option = defineOption(1);
-                switch (option) {
-                    case 1: String[] info = getBookInfo();
-                        storage.add(info);
-                        view.result(view.BOOK_LIST, book_converter);
-                        break;
-                }
-                if (option == 0) {
-                    break;
-                }
-            }
-        } else if (user.getRole().equals(Librarian.class.getName())) {
-            while (true) {
-                view.printMessage(view.ADMIN_WELCOME);
-                int option = defineOption(2);
-                switch (option) {
-                    case 1: String[] info = getBookInfo();
-                        storage.add(info);
-                        view.result(view.BOOK_LIST, book_converter);
-                        break;
-                    case 2: view.result(view.BOOK_LIST, book_converter);
-                        view.printMessage(view.BOOK_NUMBER);
-                        storage.remove(
-                                defineOption(storage.getBooks().size()) - 1);
-                        view.result(view.BOOK_LIST, book_converter);
-                        break;
-                }
-                if (option == 0) {
-                    break;
-                }
-            }
-        } else {
-            while (true) {
-                view.printMessage(view.ADMIN_WELCOME);
-                int option = defineOption(7);
-                switch (option) {
-                    case 1: String[] info = getBookInfo();
-                        storage.add(info);
-                        view.result(view.BOOK_LIST, book_converter);
-                        break;
-                    case 2: view.result(view.BOOK_LIST, book_converter);
-                        view.printMessage(view.BOOK_NUMBER);
-                        storage.remove(
-                            defineOption(storage.getBooks().size()) - 1);
-                        view.result(view.BOOK_LIST, book_converter);
-                        break;
-                    case 3: view.result(view.BOOK_LIST, book_converter);
-                        view.printMessage(view.BOOK_EDIT);
-                        storage.edit(
-                                defineOption(storage.getBooks().size()) - 1,
-                                getBookInfo());
-                        view.result(view.BOOK_LIST, book_converter);
-                        break;
-                    case 4: break;
-                    case 5: break;
-                    case 6: view.result(view.USER_LIST, user_converter);
-                        view.printMessage(view.USER_EDIT);
-                        userBase.getUsers().get(
-                                defineOption(userBase.getUsers().size()) - 1).setBlocked();
-                        view.result(view.USER_LIST, user_converter);
-                        break;
-                }
-                if (option == 0) {
-                    break;
-                }
-            }
-        }
-    }
-
-    private String[] getBookInfo() {
-
-        }
-    }*/
 
 
 }
