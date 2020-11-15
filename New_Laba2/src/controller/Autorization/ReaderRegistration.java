@@ -6,6 +6,7 @@ import model.dao.UserDAO;
 import model.service.ReaderService;
 import model.user.Reader;
 import model.user.User;
+import model.user.UserType;
 import util.Tools;
 
 public class ReaderRegistration {
@@ -20,10 +21,11 @@ public class ReaderRegistration {
     }
 
     public void signup(String login, String password) {
-        User found = tools.searchUser(login, password, dao.getAll());
-        Validator.validateLoginAndPassword(found, Action.SIGNUP);
-        dao.getAll().add(found);
-        readerService = new ReaderService((Reader) found);
+        Validator.validateLoginAndPassword(tools.searchUser(login,
+                password, dao.getAll()), Action.SIGNUP);
+        Reader new_user = new Reader(login, password);
+        dao.getAll().add(new_user);
+        readerService = new ReaderService(new_user);
         readerService.execute();
     }
 }

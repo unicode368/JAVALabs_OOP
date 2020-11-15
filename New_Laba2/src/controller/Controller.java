@@ -18,7 +18,6 @@ public class Controller {
     private Input input;
     private Converter book_converter;
     private UserAutorization userAutorization;
-    private Tools tools;
     private ReaderRegistration readerRegistration;
 
 
@@ -27,7 +26,6 @@ public class Controller {
         input = new Input();
         book_converter = new Converter(ObjectType.BOOK);
         userAutorization = new UserAutorization();
-        tools = new Tools();
         readerRegistration = new ReaderRegistration();
     }
 
@@ -65,7 +63,6 @@ public class Controller {
         }
     }
 
-    //not done yet
     public void sign_up() {
         while (true) {
             String[] loginAndPassword = getLoginAndPassword();
