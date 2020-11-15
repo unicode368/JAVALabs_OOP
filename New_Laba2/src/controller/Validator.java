@@ -64,13 +64,7 @@ public class Validator {
             throw new InvalidLoginInfo("");
         }
     }
-
-    static void isCity(String city) throws InvalidFinalDestinationException {
-        if (hasDigitsOrSpecialCharacters(city)) {
-            throw new InvalidFinalDestinationException("Невірно введено пункт призначення. " +
-                    "Будь ласка, спробуйте ще");
-        }
-    }
+    
 
     public static void checkOption(String option, ArrayList<Integer> options) throws InvalidOptionException {
         if (!isNumeric(option) && !options.contains(option)) {
@@ -85,12 +79,6 @@ public class Validator {
         }
     }
 
-    static void checkFormat(String filename) {
-        if (!(filename.substring(filename.length() - 4).equals(".csv") ||
-                filename.substring(filename.length() - 4).equals(".dat"))) {
-            throw new InvalidFileTypeException("Вказаний файл мусить мати формат .csv або .dat");
-        }
-    }
 
     public static void validateLoginAndPassword(User user) {
         if (user == null ) {
