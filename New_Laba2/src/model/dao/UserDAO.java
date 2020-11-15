@@ -17,6 +17,9 @@ public class UserDAO implements DAO {
         return userBase.getUsers();
     }
 
+    public void add(User user) {
+        userBase.getUsers().add(user);
+    }
 
     @Override
     public User get(int i) {

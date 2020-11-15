@@ -12,6 +12,8 @@ import model.exceptions.InvalidDataException;
 import model.exceptions.InvalidLoginInfo;
 import model.exceptions.InvalidOptionException;
 import model.user.Admin;
+import model.user.User;
+import model.user.UserType;
 import util.Tools;
 import view.AdminView;
 
@@ -50,7 +52,8 @@ public class AdminService extends Service {
                     break;
                 case 3:
                     break;
-                case 4: break;
+                case 4: createLibrarian();
+                    break;
                 case 5: break;
                 case 6: changeUserStatus();
                     break;
@@ -119,7 +122,7 @@ public class AdminService extends Service {
     public void createLibrarian() {
         view.show(userConverter);
         String[] info = getLoginAndPassword();
-        tools.searchUser(info[0],info[1] , userDAO.getAll()).setBlocked();
+        userDAO.add(new User(info[0], info[1], UserType.LIBRARIAN));
         view.show(userConverter);
     }
 
