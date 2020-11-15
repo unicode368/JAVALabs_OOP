@@ -31,14 +31,4 @@ public class UserBase {
         return users;
     }
 
-    public User getUser(String login, String password) {
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getLogin().equals(login) &&
-                         users.get(i).getPassword().equals(password)) {
-                return users.get(i);
-            }
-        }
-        return null;
-    }
-
 }

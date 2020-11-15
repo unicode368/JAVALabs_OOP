@@ -131,7 +131,13 @@ public class AdminService extends Service {
     }
 
     public void deleteLibrarian() {
-
+        view.print(view.USER_LIST);
+/*        view.show(userConverter);
+        view.print(view.BOOK_NUMBER);
+        int number = defineOption(1, bookDAO.getAll().size()) - 1;
+        bookDAO.delete(number);
+        view.print(view.BOOK_LIST);
+        view.show(bookConverter);*/
     }
 
     public void changeUserStatus() {

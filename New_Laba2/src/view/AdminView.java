@@ -23,6 +23,8 @@ public class AdminView implements ProgramView{
     public final String USER_LIST = "Поточний список користувачів:";
     public final String BOOK_LIST = "Поточний список книг:";
     public final String BOOK_NUMBER = "Введіть номер книги, яку бажаєте видалити:";
+    public final String LIBRARIAN_DELETE = "Введіть номер бібліотекаря, " +
+            "якого бажаєте видалити:";
 
     @Override
     public void print(String message) {
