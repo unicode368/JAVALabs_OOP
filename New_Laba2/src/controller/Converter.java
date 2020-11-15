@@ -19,8 +19,10 @@ public class Converter {
         switch (objectType) {
             case BOOK:
                 dao = new BookDAO();
+                break;
             case USER:
                 dao = new UserDAO();
+                break;
         }
         this.list = dao.getAll();
         this.objectType = objectType;
