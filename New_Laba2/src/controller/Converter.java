@@ -24,8 +24,9 @@ public class Converter {
         }
         this.list = dao.getAll();
         this.objectType = objectType;
-
     }
+
+
 
     @Override
     public String toString() {

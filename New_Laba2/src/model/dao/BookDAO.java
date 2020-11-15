@@ -21,6 +21,10 @@ public class BookDAO implements DAO {
         books.getBooks().add(book);
     }
 
+    public void delete(int i) {
+        books.getBooks().remove(i);
+    }
+
     @Override
     public Book get(int i) {
         return null;

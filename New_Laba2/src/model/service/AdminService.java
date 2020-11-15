@@ -6,7 +6,6 @@ import model.*;
 import model.dao.BookDAO;
 import model.dao.UserDAO;
 import model.exceptions.InvalidDataException;
-import model.exceptions.InvalidLoginInfo;
 import model.exceptions.InvalidOptionException;
 import model.user.Admin;
 import model.user.User;
@@ -27,14 +26,16 @@ public class AdminService extends Service {
     private Converter userConverter;
     private Tools tools;
 
-    public AdminService(Admin admin, UserDAO userDAO) {
+    public AdminService(Admin admin
+    //        , UserDAO userDAO
+    ) {
         this.admin = admin;
         input = new Input();
         view = new AdminView();
-        this.userDAO = userDAO;
+        userDAO = new UserDAO();
+        userConverter = new Converter(ObjectType.USER);
         bookDAO = new BookDAO();
         bookConverter = new Converter(ObjectType.BOOK);
-        userConverter = new Converter(ObjectType.USER);
         tools = new Tools();
     }
 
@@ -45,7 +46,7 @@ public class AdminService extends Service {
             switch (option) {
                 case 1: addBook();
                     break;
-                case 2:
+                case 2: deleteBook();
                     break;
                 case 3:
                     break;
@@ -103,13 +104,19 @@ public class AdminService extends Service {
 
     public void addBook() {
         String[] info = getBookInfo();
-        Book book = new Book(info[0],info[1],info[2],new Date(info[3]));
+        Book book = new Book(info[0],info[1],info[2], new Date(info[3]));
         bookDAO.add(book);
         view.show(bookConverter);
     }
 
     public void deleteBook() {
-
+        view.print(view.BOOK_LIST);
+        view.show(bookConverter);
+        view.print(view.BOOK_NUMBER);
+        int number = defineOption(1, bookDAO.getAll().size()) - 1;
+        bookDAO.delete(number);
+        view.print(view.BOOK_LIST);
+        view.show(bookConverter);
     }
 
     public void editBook() {

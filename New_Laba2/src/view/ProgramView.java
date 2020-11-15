@@ -6,9 +6,6 @@ public interface ProgramView {
     void print(String message);
     void printError(String message);
 /*
-    public final String BOOK_LIST = "Поточний список книг:";
-
-    public final String BOOK_NUMBER = "Введіть номер книги, яку бажаєте видалити:";
     public final String BOOK_EDIT = "Введіть номер книги, інформацію про яку бажаєте редагувати:";
     public final String LIBRARIAN_LOGIN = "Введіть логін бібліотекаря:";
     public final String LIBRARIAN_PASSWORD = "Введіть пароль бібліотекаря:";

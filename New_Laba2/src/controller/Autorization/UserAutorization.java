@@ -37,7 +37,9 @@ public class UserAutorization {
                 service.execute();
                 break;
             case ADMIN:
-                service = new AdminService((Admin) found, dao);
+                service = new AdminService((Admin) found
+                //        , dao
+                );
                 service.execute();
                 break;
         }
