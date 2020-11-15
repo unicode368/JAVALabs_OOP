@@ -14,14 +14,12 @@ import util.Tools;
 
 public class UserAutorization {
 
-    private static UserDAO dao;
+    private UserDAO dao;
     private Tools tools;
     private Service service;
 
     public UserAutorization() {
-        if (dao == null) {
-            dao = new UserDAO();
-        }
+        dao = new UserDAO();
         tools = new Tools();
     }
 
