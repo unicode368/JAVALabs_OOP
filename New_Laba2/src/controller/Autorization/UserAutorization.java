@@ -1,6 +1,7 @@
 package controller.Autorization;
 
 import controller.Validator;
+import model.Action;
 import model.dao.UserDAO;
 import model.user.Admin;
 import model.user.Librarian;
@@ -25,7 +26,7 @@ public class UserAutorization {
 
     public void login(String login, String password) {
         User found = tools.searchUser(login, password, dao.getAll());
-        Validator.validateLoginAndPassword(found);
+        Validator.validateLoginAndPassword(found, Action.LOGIN);
         switch (found.getRole()) {
             case LIBRARIAN:
                 service = new LibrarianService((Librarian) found);

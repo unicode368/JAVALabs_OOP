@@ -1,5 +1,6 @@
 package controller;
 
+import model.Action;
 import model.exceptions.*;
 import model.user.User;
 
@@ -80,14 +81,24 @@ public class Validator {
     }
 
 
-    public static void validateLoginAndPassword(User user) {
-        if (user == null ) {
-            throw new InvalidLoginInfo("Помилка!Невірно введено логін або пароль." +
-                    "Будь ласка, спробуйте ще.");
+    public static void validateLoginAndPassword(User user, Action action) {
+        switch (action) {
+            case LOGIN:
+                if (user == null ) {
+                    throw new InvalidLoginInfo("Помилка!Невірно введено логін або пароль." +
+                            "Будь ласка, спробуйте ще.");
+                }
+                if (user.getBlocked()) {
+                    throw new BlockedUserException("Помилка!Користувача заблоковано.");
+                }
+                break;
+            case SIGNUP:
+                if (user != null ) {
+                throw new InvalidLoginInfo("Помилка!Користувач вже існує." +
+                        "Будь ласка, спробуйте ще.");
+            }
         }
-        if (user.getBlocked()) {
-            throw new BlockedUserException("Помилка!Користувача заблоковано.");
-        }
+
     }
 
 }

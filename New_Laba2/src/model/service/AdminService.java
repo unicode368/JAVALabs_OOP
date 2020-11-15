@@ -2,10 +2,7 @@ package model.service;
 
 import controller.Converter;
 import controller.Validator;
-import model.Book;
-import model.Date;
-import model.Input;
-import model.ObjectType;
+import model.*;
 import model.dao.BookDAO;
 import model.dao.UserDAO;
 import model.exceptions.InvalidDataException;
@@ -135,7 +132,8 @@ public class AdminService extends Service {
         while (true) {
             String[] info = getLoginAndPassword();
             try {
-                Validator.validateLoginAndPassword(tools.searchUser(info[0], info[1], userDAO.getAll()));
+                Validator.validateLoginAndPassword
+                        (tools.searchUser(info[0], info[1], userDAO.getAll()), Action.LOGIN);
             } catch (InvalidLoginInfo e) {
                 view.printError(e.getMessage());
                 continue;

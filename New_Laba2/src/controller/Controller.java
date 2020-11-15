@@ -37,7 +37,7 @@ public class Controller {
             switch (defineOption(6)) {
                 case 0:
                     System.exit(0);
-                case 1:
+                case 1: sign_up();
                     break;
                 case 2: login();
                     break;
@@ -50,8 +50,8 @@ public class Controller {
     }
 
     public void login() {
-        String[] loginAndPassword = getLoginAndPassword();
         while (true) {
+            String[] loginAndPassword = getLoginAndPassword();
             try {
                 userAutorization.login(loginAndPassword[0], loginAndPassword[1]);
             } catch (InvalidLoginInfo e) {
@@ -67,16 +67,13 @@ public class Controller {
 
     //not done yet
     public void sign_up() {
-        String[] loginAndPassword = getLoginAndPassword();
         while (true) {
+            String[] loginAndPassword = getLoginAndPassword();
             try {
                 readerRegistration.signup(loginAndPassword[0], loginAndPassword[1]);
             } catch (InvalidLoginInfo e) {
                 view.printError(e.getMessage());
                 continue;
-            } catch (BlockedUserException e) {
-                view.printError(e.getMessage());
-                System.exit(1);
             }
             break;
         }
