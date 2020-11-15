@@ -9,6 +9,7 @@ import model.ObjectType;
 import model.dao.BookDAO;
 import model.dao.UserDAO;
 import model.exceptions.InvalidDataException;
+import model.exceptions.InvalidLoginInfo;
 import model.exceptions.InvalidOptionException;
 import model.user.Admin;
 import util.Tools;
@@ -115,8 +116,11 @@ public class AdminService extends Service {
 
     }
 
-    public void createLibrarian(String login, String password) {
-
+    public void createLibrarian() {
+        view.show(userConverter);
+        String[] info = getLoginAndPassword();
+        tools.searchUser(info[0],info[1] , userDAO.getAll()).setBlocked();
+        view.show(userConverter);
     }
 
     public void deleteLibrarian() {
@@ -125,9 +129,18 @@ public class AdminService extends Service {
 
     public void changeUserStatus() {
         view.show(userConverter);
-        String[] info = getLoginAndPassword();
-        tools.searchUser(info[0],info[1] , userDAO.getAll()).setBlocked();
-        view.show(userConverter);
+        while (true) {
+            String[] info = getLoginAndPassword();
+            try {
+                Validator.validateLoginAndPassword(tools.searchUser(info[0], info[1], userDAO.getAll()));
+            } catch (InvalidLoginInfo e) {
+                view.printError(e.getMessage());
+                continue;
+            }
+            tools.searchUser(info[0],info[1] , userDAO.getAll()).setBlocked();
+            view.show(userConverter);
+            break;
+        }
     }
 
     private String[] getLoginAndPassword() {
