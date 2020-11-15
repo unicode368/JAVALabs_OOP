@@ -1,7 +1,6 @@
 package controller.Autorization;
 
-public class ReaderRegistration implements Registration {
-    @Override
+public class ReaderRegistration {
     public void signup(String login, String password) {
 
     }

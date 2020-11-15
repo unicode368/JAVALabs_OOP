@@ -1,16 +1,30 @@
 package controller;
 
 import model.Book;
+import model.ObjectType;
+import model.dao.BookDAO;
+import model.dao.DAO;
+import model.dao.UserDAO;
 import model.user.User;
 
 import java.util.ArrayList;
 
 public class Converter {
 
-    private ArrayList<?> list;
+    private ArrayList<Object> list;
+    private ObjectType objectType;
+    private DAO dao;
 
-    Converter(ArrayList<?> list) {
-        this.list = list;
+    public Converter(ObjectType objectType) {
+        switch (objectType) {
+            case BOOK:
+                dao = new BookDAO();
+            case USER:
+                dao = new UserDAO();
+        }
+        this.list = dao.getAll();
+        this.objectType = objectType;
+
     }
 
     @Override
@@ -41,7 +55,7 @@ public class Converter {
     }
 
     public String objectInfo(ArrayList<?> objects, int size, int start) {
-        if (isListOf(objects, Book.class)) {
+        if (objectType == ObjectType.BOOK) {
             return getRow(objects, size, start, "BookName") + "\n" +
                     getRow(objects, size, start, "BookAuthor") + "\n" +
                     getRow(objects, size, start, "BookEdition") + "\n" +
@@ -57,7 +71,7 @@ public class Converter {
 
     public String getRow(ArrayList<?> objects, int size, int start, String kindOfInfo) {
         String row = "";
-        if(isListOf(objects, Book.class)) {
+        if(objectType == ObjectType.BOOK) {
             ArrayList<Book> books = (ArrayList<Book>) objects;
             switch (kindOfInfo) {
                 case "BookName" :
@@ -117,14 +131,5 @@ public class Converter {
             return row;
         }
     }
-
-    public boolean isListOf(ArrayList<?> list, Class<?> c) {
-        for (Object o : list) {
-            if (!c.isInstance(o)) return false;
-        }
-        return true;
-    }
-
-
 
 }

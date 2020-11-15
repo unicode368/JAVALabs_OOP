@@ -9,7 +9,7 @@ public class Book {
     private Date date;
     private int amount;
 
-    Book(String name, String author, String edition, Date date) {
+    public Book(String name, String author, String edition, Date date) {
         this.name = name;
         this.author = author;
         this.edition = edition;

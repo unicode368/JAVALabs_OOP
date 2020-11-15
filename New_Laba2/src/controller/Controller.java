@@ -2,37 +2,73 @@ package controller;
 
 import controller.Autorization.UserAutorization;
 import model.Input;
-import model.Storage;
+import model.ObjectType;
 import model.exceptions.BlockedUserException;
-import model.exceptions.InvalidDataException;
 import model.exceptions.InvalidLoginInfo;
 import model.exceptions.InvalidOptionException;
-import model.user.Librarian;
-import model.user.Reader;
-import model.user.User;
-import model.user.UserBase;
-import view.ProgramView;
+import view.GeneralView;
 
 import java.util.ArrayList;
 
 public class Controller {
 
-/*    private ProgramView view;
+    private GeneralView view;
     private Input input;
-    private UserAutorization userAutorization;
-    private Storage storage;
     private Converter book_converter;
+    private UserAutorization userAutorization;
+/*    private UserAutorization userAutorization;
+    private Storage storage;
     private Converter user_converter;
     private UserBase userBase;*/
 
     public Controller() {
-/*        view = new ProgramView();
+        view = new GeneralView();
         input = new Input();
-        storage = new Storage();
+        book_converter = new Converter(ObjectType.BOOK);
+        userAutorization = new UserAutorization();
+/*        storage = new Storage();
         userBase = new UserBase();
         userAutorization = new UserAutorization(userBase);
         book_converter = new Converter(storage.getBooks());
         user_converter = new Converter(userBase.getUsers());*/
+    }
+
+    public void show() {
+        while (true) {
+            view.print(view.WELCOME);
+            switch (defineOption(6)) {
+                case 0:
+                    System.exit(0);
+                case 1:
+                    break;
+                case 2: login();
+                    break;
+                case 3: view.show(book_converter);
+                    break;
+                case 4:
+                    break;
+            }
+        }
+    }
+
+    public void login() {
+        String[] loginAndPassword = getLoginAndPassword();
+        while (true) {
+            try {
+                userAutorization.login(loginAndPassword[0], loginAndPassword[1]);
+            } catch (InvalidLoginInfo e) {
+                view.printError(e.getMessage());
+                continue;
+            } catch (BlockedUserException e) {
+                view.printError(e.getMessage());
+                System.exit(1);
+            }
+            break;
+        }
+    }
+
+    public void sign_up() {
+
     }
 
     /*public void run() {
@@ -49,7 +85,7 @@ public class Controller {
                 case 5: break;
             }
         }
-    }
+    }*/
 
     private int defineOption(int end) {
         ArrayList<Integer> options = new ArrayList<>();
@@ -70,16 +106,16 @@ public class Controller {
 
     private String[] getLoginAndPassword() {
         String[] loginPassword = new String[2];
-        view.printMessage(view.LOGIN);
+        view.print(view.LOGIN);
         String login = input.getUserInput();
         loginPassword[0] = login;
-        view.printMessage(view.PASSWORD);
+        view.print(view.PASSWORD);
         String password = input.getUserInput();
         loginPassword[1] = password;
         return loginPassword;
     }
 
-    private void login() {
+    /*private void login() {
         String[] loginAndPassword = getLoginAndPassword();
         User user = null;
         while (true) {
@@ -168,24 +204,7 @@ public class Controller {
     }
 
     private String[] getBookInfo() {
-        String[] info = new String[4];
-        view.printMessage(view.BOOK_NAME);
-        info[0] = input.getUserInput();
-        view.printMessage(view.BOOK_AUTHOR);
-        info[1] = input.getUserInput();
-        view.printMessage(view.BOOK_EDITION);
-        info[2] = input.getUserInput();
-        view.printMessage(view.BOOK_DATA);
-        while (true) {
-            String data = input.getUserInput();
-            try {
-                Validator.isDataFormat(data);
-            } catch (InvalidDataException e) {
-                view.printError(e.getMessage());
-                continue;
-            }
-            info[3] = data;
-            return info;
+
         }
     }*/
 

@@ -1,20 +1,24 @@
-package model;
+package model.dao;
+
+import model.Book;
 
 import java.util.ArrayList;
 
 public class Storage {
 
-    ArrayList<Book> books;
+    static ArrayList<Book> books;
 
     public Storage() {
-        books = new ArrayList<>();
+        if (books == null) {
+            books = new ArrayList<>();
+        }
     }
 
     public ArrayList<Book> getBooks() {
         return books;
     }
 
-    public void add(String[] book) {
+/*    public void add(String[] book) {
         books.add(new Book(book[0], book[1], book[2], new Date(book[3])));
     }
 
@@ -33,5 +37,6 @@ public class Storage {
         for (int i = 0; i < books.size(); i++) {
 
         }
-    }
+        return book;
+    }*/
 }

@@ -4,8 +4,8 @@ public class Reader extends User{
 
     private int fine;
 
-    Reader(String login, String password) {
-        super(login, password, Reader.class.getName());
+    public Reader(String login, String password) {
+        super(login, password, UserType.READER);
         fine = 0;
     }
 

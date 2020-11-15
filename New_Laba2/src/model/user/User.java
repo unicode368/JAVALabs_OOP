@@ -4,11 +4,11 @@ public class User {
 
     private String login;
     private String password;
-    private String role;
+    private UserType role;
     private boolean blocked;
 
     public User(String login, String password,
-                String role) {
+                UserType role) {
         this.login = login;
         this.password = password;
         this.role = role;
@@ -23,7 +23,7 @@ public class User {
         return password;
     }
 
-    public String getRole() {
+    public UserType getRole() {
         return role;
     }
 

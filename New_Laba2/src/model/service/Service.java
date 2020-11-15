@@ -1,10 +1,11 @@
-package service;
+package model.service;
 
 import model.user.User;
 
 public class Service {
 
     User user;
+
 
     public void execute() {
 
@@ -16,6 +17,10 @@ public class Service {
 
     void exit() {
 
+    }
+
+    public int defineOption(int n) {
+        return 0;
     }
 
 }

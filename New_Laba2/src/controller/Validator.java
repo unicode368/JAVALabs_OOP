@@ -1,7 +1,7 @@
 package controller;
 
 import model.exceptions.*;
-import model.user.UserBase;
+import model.user.User;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -31,7 +31,7 @@ public class Validator {
         return Pattern.compile("[0-9]+", Pattern.CASE_INSENSITIVE).matcher(str).matches();
     }
 
-    static void isDataFormat(String data) throws InvalidDataException {
+    public static void isDataFormat(String data) throws InvalidDataException {
         if (!Pattern.compile("^\\d{1,2}\\.\\d{1,2}\\.\\d{4}$",
                 Pattern.CASE_INSENSITIVE).matcher(data).matches()) {
             throw new InvalidDataException("Невірний формат дати. Будь ласка," +
@@ -72,7 +72,7 @@ public class Validator {
         }
     }
 
-    static void checkOption(String option, ArrayList<Integer> options) throws InvalidOptionException {
+    public static void checkOption(String option, ArrayList<Integer> options) throws InvalidOptionException {
         if (!isNumeric(option) && !options.contains(option)) {
             throw new InvalidOptionException("Опція має бути одним із запропонованих чисел."
             + "Буль ласка, спробуйте ще");
@@ -92,13 +92,12 @@ public class Validator {
         }
     }
 
-    public static void validateLoginAndPassword(String login,
-                                                String password, UserBase userBase) {
-        if (userBase.getUser(login, password) == null ) {
+    public static void validateLoginAndPassword(User user) {
+        if (user == null ) {
             throw new InvalidLoginInfo("Помилка!Невірно введено логін або пароль." +
                     "Будь ласка, спробуйте ще.");
         }
-        if (userBase.getUser(login, password).getBlocked()) {
+        if (user.getBlocked()) {
             throw new BlockedUserException("Помилка!Користувача заблоковано.");
         }
     }
