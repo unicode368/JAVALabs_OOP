@@ -1,5 +1,6 @@
 package controller;
 
+import controller.Autorization.ReaderRegistration;
 import controller.Autorization.UserAutorization;
 import model.Input;
 import model.ObjectType;
@@ -18,10 +19,8 @@ public class Controller {
     private Converter book_converter;
     private UserAutorization userAutorization;
     private Tools tools;
-/*    private UserAutorization userAutorization;
-    private Storage storage;
-    private Converter user_converter;
-    private UserBase userBase;*/
+    private ReaderRegistration readerRegistration;
+
 
     public Controller() {
         view = new GeneralView();
@@ -29,11 +28,7 @@ public class Controller {
         book_converter = new Converter(ObjectType.BOOK);
         userAutorization = new UserAutorization();
         tools = new Tools();
-/*        storage = new Storage();
-        userBase = new UserBase();
-        userAutorization = new UserAutorization(userBase);
-        book_converter = new Converter(storage.getBooks());
-        user_converter = new Converter(userBase.getUsers());*/
+        readerRegistration = new ReaderRegistration();
     }
 
     public void show() {
@@ -70,25 +65,23 @@ public class Controller {
         }
     }
 
+    //not done yet
     public void sign_up() {
-
+        String[] loginAndPassword = getLoginAndPassword();
+        while (true) {
+            try {
+                readerRegistration.signup(loginAndPassword[0], loginAndPassword[1]);
+            } catch (InvalidLoginInfo e) {
+                view.printError(e.getMessage());
+                continue;
+            } catch (BlockedUserException e) {
+                view.printError(e.getMessage());
+                System.exit(1);
+            }
+            break;
+        }
     }
 
-    /*public void run() {
-        while (true) {
-            view.printMessage(view.WELCOME);
-            switch (defineOption(5)) {
-                case 0: System.exit(0);
-                case 1:
-                    break;
-                case 2: login();
-                    break;
-                case 3: break;
-                case 4: break;
-                case 5: break;
-            }
-        }
-    }*/
 
     private int defineOption(int end) {
         ArrayList<Integer> options = new ArrayList<>();
