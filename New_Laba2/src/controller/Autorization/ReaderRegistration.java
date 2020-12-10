@@ -5,8 +5,6 @@ import model.Action;
 import model.dao.UserDAO;
 import model.service.ReaderService;
 import model.user.Reader;
-import model.user.User;
-import model.user.UserType;
 import util.Tools;
 
 public class ReaderRegistration {

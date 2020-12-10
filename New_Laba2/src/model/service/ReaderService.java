@@ -15,9 +15,7 @@ public class ReaderService extends Service {
     private Input input;
 //    private BookDAO dao;
 
-    public ReaderService(Reader reader
-          //  , BookDAO dao
-    ) {
+    public ReaderService(Reader reader) {
         this.reader = reader;
         view = new ReaderView();
         input = new Input();
@@ -26,7 +24,7 @@ public class ReaderService extends Service {
 
     public void execute() {
         while (true) {
-            view.print(view.READER_WELCOME);
+            view.printMessage(view.READER_WELCOME);
             int option = defineOption(2);
             switch (option) {
                 case 1: break;

@@ -2,15 +2,15 @@ package view;
 
 import controller.Converter;
 
-public interface ProgramView {
-    void print(String message);
-    void printError(String message);
+public class ProgramView {
 /*
     public final String BOOK_EDIT = "Введіть номер книги, інформацію про яку бажаєте редагувати:";
     public final String LIBRARIAN_LOGIN = "Введіть логін бібліотекаря:";
     public final String LIBRARIAN_PASSWORD = "Введіть пароль бібліотекаря:";
     public final String LIBRARIAN_DATA = "Введіть дату видання книги:";
-
+*/
+    public final String LOGIN = "Введіть логін:";
+    public final String PASSWORD = "Введіть пароль:";
 
     public void printMessage(String message) {
         System.out.println(message);
@@ -20,8 +20,8 @@ public interface ProgramView {
         System.err.println(message);
     }
 
-    public void result(String message, Converter converter) {
+    public void show(String message, Converter converter) {
         System.out.println(message);
         System.out.println(converter.toString());
-    }*/
+    }
 }

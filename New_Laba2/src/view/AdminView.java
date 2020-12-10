@@ -1,8 +1,7 @@
 package view;
 
-import controller.Converter;
 
-public class AdminView implements ProgramView{
+public class AdminView extends ProgramView{
 
     public final String ADMIN_WELCOME = "Ласкаво просимо, admin!" + "\n" +
             "Будь ласка, оберіть опцію:" + "\n" +
@@ -17,28 +16,10 @@ public class AdminView implements ProgramView{
     public final String BOOK_AUTHOR = "Введіть автора книги:";
     public final String BOOK_EDITION = "Введіть видавництво книги:";
     public final String BOOK_DATA = "Введіть дату видання книги:";
-    public final String LOGIN = "Введіть логін:";
-    public final String PASSWORD = "Введіть пароль:";
     public final String USER_EDIT = "Введіть номер користувача, статус якого бажаєте змінити:";
     public final String USER_LIST = "Поточний список користувачів:";
     public final String BOOK_LIST = "Поточний список книг:";
     public final String BOOK_NUMBER = "Введіть номер книги, яку бажаєте видалити:";
     public final String LIBRARIAN_DELETE = "Введіть номер бібліотекаря, " +
             "якого бажаєте видалити:";
-
-    @Override
-    public void print(String message) {
-        System.out.println(message);
-    }
-
-    @Override
-    public void printError(String message) {
-        System.err.println(message);
-    }
-
-    public void show(Converter info) {
-        System.out.println(info.toString());
-        System.out.println();
-    }
-
 }

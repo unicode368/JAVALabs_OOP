@@ -2,7 +2,7 @@ package view;
 
 import controller.Converter;
 
-public class GeneralView implements ProgramView {
+public class GeneralView extends ProgramView {
     public final String WELCOME = "Ласкаво просимо!" + "\n" +
             "Будь ласка, оберіть опцію:" + "\n" +
             "1. Зареєструватись."  + "\n" +
@@ -10,10 +10,8 @@ public class GeneralView implements ProgramView {
             "3. Переглянути каталог." + "\n" +
             "4. Шукати книгу." + "\n" +
             "0. Завершити роботу.";
-    public final String LOGIN = "Введіть логін:";
-    public final String PASSWORD = "Введіть пароль:";
 
-    @Override
+
     public void print(String message) {
         System.out.println(message);
     }

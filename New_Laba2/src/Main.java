@@ -1,7 +1,7 @@
-import controller.Controller;
+import controller.GeneralController;
 
 public class Main {
     public static void main(String[] args) {
-        new Controller().show();
+        new GeneralController().execute();
     }
 }

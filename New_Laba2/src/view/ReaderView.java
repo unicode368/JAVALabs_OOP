@@ -1,6 +1,6 @@
 package view;
 
-public class ReaderView implements ProgramView {
+public class ReaderView extends ProgramView {
 
     public final String READER_WELCOME = "Ласкаво просимо, reader!" + "\n" +
             "Будь ласка, оберіть опцію:" + "\n" +
@@ -8,13 +8,4 @@ public class ReaderView implements ProgramView {
             "2. Замовити книгу." + "\n" +
             "0. Вийти.";
 
-    @Override
-    public void print(String message) {
-        System.out.println(message);
-    }
-
-    @Override
-    public void printError(String message) {
-
-    }
 }

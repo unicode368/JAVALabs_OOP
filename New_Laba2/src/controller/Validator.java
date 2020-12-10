@@ -68,7 +68,7 @@ public class Validator {
 
 
     public static void checkOption(String option, ArrayList<Integer> options) throws InvalidOptionException {
-        if (!isNumeric(option) && !options.contains(option)) {
+        if (!isNumeric(option) || !options.contains(Integer.parseInt(option))) {
             throw new InvalidOptionException("Опція має бути одним із запропонованих чисел."
             + "Буль ласка, спробуйте ще");
         }

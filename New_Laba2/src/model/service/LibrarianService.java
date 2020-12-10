@@ -29,7 +29,7 @@ public class LibrarianService extends Service {
 
     public void execute() {
         while (true) {
-            view.print(view.LIBRARIAN_WELCOME);
+            view.printMessage(view.LIBRARIAN_WELCOME);
             int option = defineOption(1);
             switch (option) {
                 case 1: break;

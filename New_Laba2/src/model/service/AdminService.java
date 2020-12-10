@@ -26,9 +26,7 @@ public class AdminService extends Service {
     private Converter userConverter;
     private Tools tools;
 
-    public AdminService(Admin admin
-    //        , UserDAO userDAO
-    ) {
+    public AdminService(Admin admin) {
         this.admin = admin;
         input = new Input();
         view = new AdminView();
@@ -41,7 +39,7 @@ public class AdminService extends Service {
 
     public void execute() {
         while (true) {
-            view.print(view.ADMIN_WELCOME);
+            view.printMessage(view.ADMIN_WELCOME);
             int option = defineOption(0,6);
             switch (option) {
                 case 1: addBook();
@@ -82,13 +80,13 @@ public class AdminService extends Service {
 
     public String[] getBookInfo() {
         String[] info = new String[4];
-        view.print(view.BOOK_NAME);
+        view.printMessage(view.BOOK_NAME);
         info[0] = input.getUserInput();
-        view.print(view.BOOK_AUTHOR);
+        view.printMessage(view.BOOK_AUTHOR);
         info[1] = input.getUserInput();
-        view.print(view.BOOK_EDITION);
+        view.printMessage(view.BOOK_EDITION);
         info[2] = input.getUserInput();
-        view.print(view.BOOK_DATA);
+        view.printMessage(view.BOOK_DATA);
         while (true) {
             String data = input.getUserInput();
             try {
@@ -106,17 +104,17 @@ public class AdminService extends Service {
         String[] info = getBookInfo();
         Book book = new Book(info[0],info[1],info[2], new Date(info[3]));
         bookDAO.add(book);
-        view.show(bookConverter);
+        view.show(view.BOOK_LIST, bookConverter);
     }
 
     public void deleteBook() {
-        view.print(view.BOOK_LIST);
-        view.show(bookConverter);
-        view.print(view.BOOK_NUMBER);
+        view.printMessage(view.BOOK_LIST);
+        view.show(view.BOOK_LIST, bookConverter);
+        view.printMessage(view.BOOK_NUMBER);
         int number = defineOption(1, bookDAO.getAll().size()) - 1;
         bookDAO.delete(number);
-        view.print(view.BOOK_LIST);
-        view.show(bookConverter);
+        view.printMessage(view.BOOK_LIST);
+        view.show(view.BOOK_LIST, bookConverter);
     }
 
     public void editBook() {
@@ -124,38 +122,38 @@ public class AdminService extends Service {
     }
 
     public void createLibrarian() {
-        view.show(userConverter);
+        view.show(view.USER_LIST, userConverter);
         String[] info = getLoginAndPassword();
         userDAO.add(new User(info[0], info[1], UserType.LIBRARIAN));
-        view.show(userConverter);
+        view.show(view.USER_LIST, userConverter);
     }
 
     public void deleteLibrarian() {
-        view.print(view.USER_LIST);
-/*        view.show(userConverter);
+        view.printMessage(view.USER_LIST);
+/*        view.execute(userConverter);
         view.print(view.BOOK_NUMBER);
         int number = defineOption(1, bookDAO.getAll().size()) - 1;
         bookDAO.delete(number);
         view.print(view.BOOK_LIST);
-        view.show(bookConverter);*/
+        view.execute(bookConverter);*/
     }
 
     public void changeUserStatus() {
-        view.print(view.USER_LIST);
-        view.show(userConverter);
-        view.print(view.USER_EDIT);
+        view.printMessage(view.USER_LIST);
+        view.show(view.USER_LIST, userConverter);
+        view.printMessage(view.USER_EDIT);
         int number = defineOption(1, userDAO.getAll().size()) - 1;
         userDAO.get(number).setBlocked();
-        view.print(view.USER_LIST);
-        view.show(userConverter);
+        view.printMessage(view.USER_LIST);
+        view.show(view.USER_LIST, userConverter);
     }
 
     private String[] getLoginAndPassword() {
         String[] loginPassword = new String[2];
-        view.print(view.LOGIN);
+        view.printMessage(view.LOGIN);
         String login = input.getUserInput();
         loginPassword[0] = login;
-        view.print(view.PASSWORD);
+        view.printMessage(view.PASSWORD);
         String password = input.getUserInput();
         loginPassword[1] = password;
         return loginPassword;
