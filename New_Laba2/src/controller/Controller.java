@@ -1,30 +1,29 @@
 package controller;
 
 
-import model.Input;
 import model.exceptions.InvalidOptionException;
 import view.ProgramView;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Controller {
 
     private ProgramView view;
-    private Input input;
 
 
     public Controller() {
         view = new ProgramView();
-        input = new Input();
     }
 
     int defineOption(int start, int end) {
         ArrayList<Integer> options = new ArrayList<>();
+        Scanner scan = new Scanner(System.in);
         for (int i = start; i <= end; i++) {
             options.add(i);
         }
         while (true) {
-            String userOption = input.getUserInput();
+            String userOption = scan.nextLine();
             try {
                 Validator.checkOption(userOption, options);
             } catch (InvalidOptionException e) {
@@ -34,5 +33,6 @@ public class Controller {
             return Integer.parseInt(userOption);
         }
     }
+
 
 }

@@ -7,7 +7,9 @@ import model.exceptions.BlockedUserException;
 import model.exceptions.InvalidLoginInfo;
 import view.GeneralView;
 
-public class GeneralController extends ControllerAuth {
+import java.util.Scanner;
+
+public class GeneralController extends Controller {
 
     private GeneralView view;
     private Converter book_converter;
@@ -69,5 +71,16 @@ public class GeneralController extends ControllerAuth {
         }
     }
 
-
+    private String[] getLoginAndPassword() {
+        Scanner scan = new Scanner(System.in);
+        String[] loginPassword = new String[2];
+        view.printMessage(view.LOGIN);
+        String login = scan.nextLine();
+        loginPassword[0] = login;
+        view.printMessage(view.PASSWORD);
+        String password = scan.nextLine();
+        loginPassword[1] = password;
+        return loginPassword;
+    }
+    
 }
