@@ -1,14 +1,11 @@
 package model.service;
 
-import controller.Converter;
+import model.Book;
+import model.ObjectType;
 import model.dao.BookDAO;
 import model.dao.UserDAO;
 import model.user.User;
 import util.Tools;
-import view.AdminView;
-import view.GeneralView;
-
-import java.awt.print.Book;
 
 public class Service {
 
@@ -21,8 +18,8 @@ public class Service {
     public Service() {
         userDAO = new UserDAO();
         bookDAO = new BookDAO();
-        bookTools = new Tools<>();
-        userTools = new Tools<>();
+        bookTools = new Tools<>(ObjectType.BOOK);
+        userTools = new Tools<>(ObjectType.USER);
     }
 
     public void execute() {
@@ -33,15 +30,16 @@ public class Service {
 
     }
 
-    void exit() {
-
-    }
 
     public Tools<Book> getBookTools() {
-
+        return bookTools;
     }
 
+    public Tools<User> getUserTools() {
+        return userTools;
+    }
 
-
-
+    public UserDAO getUserDAO() {
+        return userDAO;
+    }
 }

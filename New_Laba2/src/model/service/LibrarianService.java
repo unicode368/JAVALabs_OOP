@@ -2,28 +2,23 @@ package model.service;
 
 import controller.Validator;
 import model.Book;
-import model.Input;
 import model.dao.Storage;
 import model.exceptions.InvalidOptionException;
-import model.user.Librarian;
+import model.user.User;
 import view.LibrarianView;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class LibrarianService extends Service {
 
-    private Librarian librarian;
+    private User librarian;
     private LibrarianView view;
-    private Input input;
  //   private UserDAO dao;
 
-    public LibrarianService(Librarian librarian
-            //,
-                            //UserDAO dao
-                            ) {
+    public LibrarianService(User librarian) {
         this.librarian = librarian;
         view = new LibrarianView();
-        input = new Input();
 //        this.dao = dao;
     }
 
@@ -42,11 +37,12 @@ public class LibrarianService extends Service {
 
     public int defineOption(int end) {
         ArrayList<Integer> options = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
         for (int i = 0; i <= end; i++) {
             options.add(i);
         }
         while (true) {
-            String userOption = input.getUserInput();
+            String userOption = scanner.nextLine();
             try {
                 Validator.checkOption(userOption, options);
             } catch (InvalidOptionException e) {

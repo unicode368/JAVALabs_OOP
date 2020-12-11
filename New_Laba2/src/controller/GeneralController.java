@@ -2,18 +2,15 @@ package controller;
 
 import controller.Autorization.ReaderRegistration;
 import controller.Autorization.UserAutorization;
-import model.Action;
 import model.ObjectType;
 import model.exceptions.BlockedUserException;
 import model.exceptions.InvalidLoginInfo;
-import model.service.AdminService;
 import model.service.LibrarianService;
 import model.service.ReaderService;
 import model.service.Service;
-import model.user.Admin;
-import model.user.Librarian;
 import model.user.Reader;
 import model.user.User;
+import model.user.UserType;
 import view.GeneralView;
 
 import java.util.Scanner;
@@ -67,11 +64,13 @@ public class GeneralController extends Controller {
             }
             break;
         }
-        User found = tools.searchUser(login, password, dao.getAll());
-        Validator.validateLoginAndPassword(found, Action.LOGIN);
+        User found = service.getUserTools().search(
+                new User(getLoginAndPassword()[0],
+                        getLoginAndPassword()[1]), service.getUserDAO().getAll());
+        Validator.validateLoginAndPassword(found, "login");
         switch (found.getRole()) {
             case LIBRARIAN:
-                service = new LibrarianService((Librarian) found);
+                service = new LibrarianService(found);
                 service.execute();
                 break;
             case READER:
@@ -79,15 +78,16 @@ public class GeneralController extends Controller {
                 service.execute();
                 break;
             case ADMIN:
-                service = new AdminService((Admin) found);
-                service.execute();
+                AdminController controller = new AdminController(found);
+                controller.execute();
                 break;
         }
     }
 
     private void sign_up() {
+        String[] loginAndPassword;
         while (true) {
-            String[] loginAndPassword = getLoginAndPassword();
+            loginAndPassword = getLoginAndPassword();
             try {
                 readerRegistration.signup(loginAndPassword[0], loginAndPassword[1]);
             } catch (InvalidLoginInfo e) {
@@ -96,12 +96,15 @@ public class GeneralController extends Controller {
             }
             break;
         }
-        Validator.validateLoginAndPassword(tools.searchUser(login,
-                password, dao.getAll()), Action.SIGNUP);
-        Reader new_user = new Reader(login, password);
-        dao.getAll().add(new_user);
-        readerService = new ReaderService(new_user);
-        readerService.execute();
+        User newUser = service.getUserTools().search(
+                new User(getLoginAndPassword()[0],
+                        getLoginAndPassword()[1]), service.getUserDAO().getAll());
+        Validator.validateLoginAndPassword(newUser, "signup");
+        Reader new_user = (Reader) new User(loginAndPassword[0],
+                loginAndPassword[1], UserType.READER);
+        service.getUserDAO().getAll().add(new_user);
+//        readerService = new ReaderService(new_user);
+//        readerService.execute();
     }
 
     private String[] getLoginAndPassword() {

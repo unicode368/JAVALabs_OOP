@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class Book {
@@ -53,5 +54,15 @@ public class Book {
         this.date = date;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(getName(), book.getName()) &&
+                Objects.equals(getAuthor(), book.getAuthor()) &&
+                Objects.equals(getEdition(), book.getEdition()) &&
+                Objects.equals(getDate(), book.getDate());
+    }
 
 }
