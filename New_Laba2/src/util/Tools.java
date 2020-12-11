@@ -1,18 +1,17 @@
 package util;
 
 import model.Book;
+import model.ObjectType;
 import model.user.User;
-
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public class Tools {
+public class Tools<T> {
 
-    private BookComparator bookComparator;
-    private UserComparator userComparator;
+    ObjectType objectType;
 
-    public Tools() {
-        bookComparator = new BookComparator();
-        userComparator = new UserComparator();
+    public Tools(ObjectType objectType) {
+        this.objectType = objectType;
     }
 
     public Book searchBook(Book book, ArrayList<Book> books) {
@@ -32,4 +31,14 @@ public class Tools {
         }
         return null;
     }
+
+    public T search(Book book) {
+
+    }
+
+    @Override
+    public int compare(T o1, T o2) {
+        return 0;
+    }
+
 }

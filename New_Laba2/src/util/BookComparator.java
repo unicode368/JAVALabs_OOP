@@ -2,7 +2,9 @@ package util;
 
 import model.Book;
 
-public class BookComparator {
+import java.util.Comparator;
+
+public class BookComparator implements Comparator<T> {
 
     public int compare(Object o1, Object o2) {
         return 0;
@@ -16,5 +18,10 @@ public class BookComparator {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public int compare(T o1, T o2) {
+        return 0;
     }
 }
