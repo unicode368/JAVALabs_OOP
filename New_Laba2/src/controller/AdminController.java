@@ -49,12 +49,18 @@ public class AdminController extends Controller {
                     break;
                 case 3:
                     break;
-                case 4:
-                    //createLibrarian();
+                case 4: view.show(view.USER_LIST, userConverter);
+                    adminService.createLibrarian();
+                    view.show(view.USER_LIST, userConverter);
                     break;
                 case 5: break;
-                case 6:
-                    //changeUserStatus();
+                case 6:view.printMessage(view.USER_LIST);
+                    view.show(view.USER_LIST, userConverter);
+                    view.printMessage(view.USER_EDIT);
+                    adminService.changeUserStatus(defineOption(1,
+                            adminService.getUserDAO().getAll().size()) - 1);
+                    view.printMessage(view.USER_LIST);
+                    view.show(view.USER_LIST, userConverter);
                     break;
                 case 7: break;
             }

@@ -5,6 +5,7 @@ import model.dao.BookDAO;
 import model.dao.UserDAO;
 import model.user.User;
 import model.user.UserType;
+import util.CredentialsRandomizer;
 import util.Tools;
 
 
@@ -37,14 +38,12 @@ public class AdminService extends Service {
     }
 
     public void createLibrarian() {
-        view.show(view.USER_LIST, userConverter);
-        String[] info = {"gwg", "wgerhe"};
+        String[] info = CredentialsRandomizer.generateCredentials();
         userDAO.add(new User(info[0], info[1], UserType.LIBRARIAN));
-        view.show(view.USER_LIST, userConverter);
     }
 
     public void deleteLibrarian() {
-        view.printMessage(view.USER_LIST);
+//        view.printMessage(view.USER_LIST);
 /*        view.execute(userConverter);
         view.print(view.BOOK_NUMBER);
         int number = defineOption(1, bookDAO.getAll().size()) - 1;
@@ -53,14 +52,8 @@ public class AdminService extends Service {
         view.execute(bookConverter);*/
     }
 
-    public void changeUserStatus() {
-        view.printMessage(view.USER_LIST);
-        view.show(view.USER_LIST, userConverter);
-        view.printMessage(view.USER_EDIT);
-        int number = defineOption(1, userDAO.getAll().size()) - 1;
+    public void changeUserStatus(int number) {
         userDAO.get(number).setBlocked();
-        view.printMessage(view.USER_LIST);
-        view.show(view.USER_LIST, userConverter);
     }
 
     public UserDAO getUserDAO() {
