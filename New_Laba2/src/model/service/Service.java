@@ -1,7 +1,6 @@
 package model.service;
 
 import controller.Converter;
-import model.Input;
 import model.dao.BookDAO;
 import model.dao.UserDAO;
 import model.user.User;
@@ -11,7 +10,6 @@ import view.AdminView;
 public class Service {
 
     User user;
-    private Input input;
     private AdminView view;
     private UserDAO userDAO;
     private BookDAO bookDAO;

@@ -5,6 +5,7 @@ import controller.Autorization.UserAutorization;
 import model.ObjectType;
 import model.exceptions.BlockedUserException;
 import model.exceptions.InvalidLoginInfo;
+import model.service.Service;
 import view.GeneralView;
 
 import java.util.Scanner;
@@ -15,6 +16,7 @@ public class GeneralController extends Controller {
     private Converter book_converter;
     private UserAutorization userAutorization;
     private ReaderRegistration readerRegistration;
+    private Service service;
 
 
     public GeneralController() {
@@ -22,6 +24,7 @@ public class GeneralController extends Controller {
         book_converter = new Converter(ObjectType.BOOK);
         userAutorization = new UserAutorization();
         readerRegistration = new ReaderRegistration();
+        service = new Service();
     }
 
     public void execute() {
@@ -82,5 +85,5 @@ public class GeneralController extends Controller {
         loginPassword[1] = password;
         return loginPassword;
     }
-    
+
 }
