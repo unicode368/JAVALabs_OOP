@@ -20,12 +20,13 @@ public class BooksList extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws
             IOException, ServletException {
+        ArrayList<Book> list = new ArrayList<>();
         try {
             service = new Service();
+            list = service.getBookDAO().getAll();
         } catch (SQLException|ClassNotFoundException e) {
 
         }
-        ArrayList<Book> list = service.getBookDAO().getAll();
         request.setAttribute("search", false);
         request.setAttribute("booklist", list);
     }
@@ -33,19 +34,19 @@ public class BooksList extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws
             ServletException, IOException {
+        ArrayList<Book> list = new ArrayList<>();
+        req.setCharacterEncoding("UTF-8");
         try {
             service = new Service();
+            if (req.getParameter("search-type").equals("name")) {
+                list = service.getBookDAO().get(req.getParameter("search"),
+                        SearchOption.NAME);
+            } else {
+                list = service.getBookDAO().get(req.getParameter("search"),
+                        SearchOption.AUTHOR);
+            }
         } catch (SQLException|ClassNotFoundException e) {
 
-        }
-        ArrayList<Book> list;
-        req.setCharacterEncoding("UTF-8");
-        if (req.getParameter("search-type").equals("name")) {
-            list = service.getBookTools().search(SearchOption.NAME, ObjectType.BOOK,
-                    req.getParameter("search"), service.getBookDAO());
-        } else {
-            list = service.getBookTools().search(SearchOption.AUTHOR, ObjectType.BOOK,
-                    req.getParameter("search"), service.getBookDAO());
         }
         req.setAttribute("search", true);
         req.setAttribute("booklist", list);

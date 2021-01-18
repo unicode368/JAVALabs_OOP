@@ -27,9 +27,9 @@ public class AdminService extends Service {
 
     public void addBook(String[] data) {
         String[] info = data;
-        Book book = new Book(bookDAO.getAll().size() + 1,
+/*       Book book = new Book(bookDAO.getAll().size() + 1,
                 info[0],info[1], info[2], new Date(info[3]));
-        bookDAO.add(book);
+        bookDAO.add(book);*/
     }
 
     public void deleteBook(int number) {

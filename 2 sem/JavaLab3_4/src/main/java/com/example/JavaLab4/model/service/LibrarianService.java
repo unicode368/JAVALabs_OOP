@@ -1,6 +1,5 @@
 package com.example.JavaLab4.model.service;
 
-import com.example.JavaLab4.model.dao.Storage;
 import com.example.JavaLab4.model.user.User;
 import com.example.JavaLab4.model.Book;
 
@@ -16,8 +15,8 @@ public class LibrarianService extends Service {
 //        this.dao = dao;
     }
 
-    public void giveBook(Storage storage, Book book) {
+ /*   public void giveBook(Storage storage, Book book) {
 
-    }
+    }*/
 
 }

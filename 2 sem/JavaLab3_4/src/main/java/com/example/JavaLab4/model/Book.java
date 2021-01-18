@@ -12,13 +12,14 @@ public class Book {
     private Date date;
     private int amount;
 
-    public Book(int id, String name, String author, String edition, Date date) {
+    public Book(int id, String name, String author, String edition, Date date,
+        int amount) {
         this.id = id;
         this.name = name;
         this.author = author;
         this.edition = edition;
         this.date = date;
-        amount = new Random().nextInt(10) + 1;
+        this.amount = amount;
     }
 
     public int getId() {

@@ -7,10 +7,10 @@ public class Date {
     private int year;
 
     public Date(String date) {
-        String[] numbers = date.split("\\.");
-        day = Integer.parseInt(numbers[0]);
+        String[] numbers = date.split("-");
+        day = Integer.parseInt(numbers[2]);
         month = Integer.parseInt(numbers[1]);
-        year = Integer.parseInt(numbers[2]);
+        year = Integer.parseInt(numbers[0]);
     }
 
     public String toString() {

@@ -35,7 +35,7 @@ public class Tools<T> {
     }
 
     public ArrayList<T> search(SearchOption type, ObjectType objectType, String name, DAO<T> dao) {
-        ArrayList<T> found = new ArrayList<>();
+  /*      ArrayList<T> found = new ArrayList<>();
         if (objectType == ObjectType.BOOK) {
             BookDAO bookDAO = (BookDAO) dao;
             if (type == SearchOption.NAME) {
@@ -52,7 +52,8 @@ public class Tools<T> {
                 }
             }
         }
-        return found;
+        return found;*/
+        return null;
     }
 
 
