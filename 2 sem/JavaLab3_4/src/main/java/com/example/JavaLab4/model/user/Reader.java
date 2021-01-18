@@ -10,10 +10,9 @@ public class Reader extends User {
     private ArrayList<Order> orders;
 
     public Reader(int id, String login,
-                  String password, ArrayList<Order> orders) {
-        super(id, login, password, UserType.READER);
+                  String password, boolean blocked) {
+        super(id, login, password, UserType.READER, blocked);
         fine = 0;
-        this.orders = orders;
     }
 
     public int getFine() {

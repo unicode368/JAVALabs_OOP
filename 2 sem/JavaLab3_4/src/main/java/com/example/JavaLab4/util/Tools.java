@@ -3,6 +3,7 @@ package com.example.JavaLab4.util;
 import com.example.JavaLab4.model.*;
 import com.example.JavaLab4.model.dao.BookDAO;
 import com.example.JavaLab4.model.dao.DAO;
+import com.example.JavaLab4.model.dao.UserDAO;
 import com.example.JavaLab4.model.user.User;
 
 import java.util.ArrayList;
@@ -23,13 +24,13 @@ public class Tools<T> {
         }
     }
 
-    public ArrayList<T> search(T obj, ArrayList<T> dao) {
+    public ArrayList<T> search(T obj, DAO<T> dao) {
         ArrayList<T> found = new ArrayList<>();
-        for (int i = 0; i < dao.size(); i++) {
+/*        for (int i = 0; i < dao.size(); i++) {
             if (obj.equals(dao.get(i))) {
                 found.add(dao.get(i));
             }
-        }
+        }*/
         return found;
     }
 

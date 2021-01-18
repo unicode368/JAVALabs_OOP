@@ -11,7 +11,9 @@
         <a href="${pageContext.request.contextPath}/">
             <div class="topnavC">Головна</div>
         </a>
-        <div class="topnavC">Користувачі</div>
+        <a href="userList">
+            <div class="topnavC">Користувачі</div>
+        </a>
         <div class="topnav-right">
             <a href="logout">
                 <div class="topnavC">Вихід</div>

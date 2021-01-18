@@ -27,15 +27,12 @@ public class LoginPage extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        try {
-            service = new Service();
-        } catch (SQLException|ClassNotFoundException e) {
-            System.exit(1);
-        }
         User user = null;
         try {
-            user = service.getUserTools().search(new User(username, password),
-                    service.getUserDAO().getAll()).get(0);
+            service = new Service();
+            user = service.getUserDAO().get(username, password);
+        } catch (SQLException|ClassNotFoundException e) {
+            System.exit(1);
         } catch (IndexOutOfBoundsException e) {
             req.setAttribute("error", "Unknown login, try again");
             doGet(req, resp);

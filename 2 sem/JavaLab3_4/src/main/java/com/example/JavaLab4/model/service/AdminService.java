@@ -42,7 +42,7 @@ public class AdminService extends Service {
 
     public void createLibrarian() {
         String[] info = CredentialsRandomizer.generateCredentials();
-        userDAO.add(new User(userDAO.getAll().size() + 1, info[0], info[1], UserType.LIBRARIAN));
+//        userDAO.add(new User(userDAO.getAll().size() + 1, info[0], info[1], UserType.LIBRARIAN));
     }
 
     public void deleteLibrarian() {

@@ -11,6 +11,15 @@ public class User {
     private boolean blocked;
 
     public User(int id, String login, String password,
+                UserType role, boolean blocked) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+        this.blocked = blocked;
+    }
+
+    public User(int id, String login, String password,
                 UserType role) {
         this.id = id;
         this.login = login;
