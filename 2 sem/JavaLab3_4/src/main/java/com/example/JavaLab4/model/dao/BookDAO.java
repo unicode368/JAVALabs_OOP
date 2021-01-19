@@ -40,8 +40,12 @@ public class BookDAO implements DAO {
  //       books.getBooks().add(book);
     }
 
-    public void delete(int i) {
- //       books.getBooks().remove(i);
+    public void delete(int i) throws SQLException {
+        PreparedStatement ps;
+        String query = "DELETE FROM books WHERE id=?";
+        ps = db.prepareStatement(query);
+        ps.setInt(1, i);
+        ps.executeUpdate();
     }
 
     @Override

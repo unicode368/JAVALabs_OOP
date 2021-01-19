@@ -33,7 +33,7 @@ public class AdminService extends Service {
     }
 
     public void deleteBook(int number) {
-        bookDAO.delete(number);
+//        bookDAO.delete(number);
     }
 
     public void editBook() {

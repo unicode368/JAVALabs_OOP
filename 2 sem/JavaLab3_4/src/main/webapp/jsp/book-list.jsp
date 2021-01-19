@@ -13,6 +13,12 @@
     function getVal(param) {
         console.log(param.getAttribute("value"));
     }
+    function clearDelete() {
+        document.getElementById("delete").value = "";
+    }
+    function clearEdit() {
+        document.getElementById("edit").value = "";
+    }
 </script>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%
@@ -34,7 +40,6 @@
                 continue;
             }%>
             <div class="Column" style="text-align: center; padding: 70px" >
-                <param name="book" id=<%=booklist.get(j).getId()%> value=<%=booklist.get(j).getId()%> />
             <div>Назва: <%=booklist.get(j).getName()%></div>
             <div>Автор: <%=booklist.get(j).getAuthor()%></div>
             <div>Видання: <%=booklist.get(j).getEdition()%></div>
@@ -45,10 +50,13 @@
                     <button onclick="getVal(document.getElementById(<%=booklist.get(j).getId()%>))">Замовити</button>
                 </form>
                 <% } else if (user != null && user.getRole() == UserType.ADMIN) { %>
-                <form>
-                    <button>Редагувати</button>
-                    <button>Видалити</button>
-                </form>
+               <form action="adminBooks" method="post">
+                   <input type="hidden" id="edit" name="edit" value=<%=booklist.get(j).getId()%> />
+                   <input type="button" name="bt" value="Редагувати" onclick="{
+                       clearDelete();this.form.submit()}"/>
+                   <input type="hidden" id="delete" name="delete" value=<%=booklist.get(j).getId()%> />
+                   <input type="button" name="bt" value="Видалити" onclick="clearEdit();this.form.submit()"/>
+               </form>
                 <% } %>
             </div>
         <%        } %>
