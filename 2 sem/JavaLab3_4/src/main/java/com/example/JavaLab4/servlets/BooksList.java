@@ -36,19 +36,28 @@ public class BooksList extends HttpServlet {
             ServletException, IOException {
         ArrayList<Book> list = new ArrayList<>();
         req.setCharacterEncoding("UTF-8");
-        try {
-            service = new Service();
-            if (req.getParameter("search-type").equals("name")) {
-                list = service.getBookDAO().get(req.getParameter("search"),
-                        SearchOption.NAME);
-            } else {
-                list = service.getBookDAO().get(req.getParameter("search"),
-                        SearchOption.AUTHOR);
-            }
-        } catch (SQLException|ClassNotFoundException e) {
+        if (req.getParameter("sort") != null) {
+            try {
+                service = new Service();
+                list = service.getBookDAO().getSorted(req.getParameter("sort"));
+            } catch (SQLException|ClassNotFoundException e) {
 
+            }
+        } else if (req.getParameter("search-type") != null) {
+            try {
+                service = new Service();
+                if (req.getParameter("search-type").equals("name")) {
+                    list = service.getBookDAO().get(req.getParameter("search"),
+                            SearchOption.NAME);
+                } else {
+                    list = service.getBookDAO().get(req.getParameter("search"),
+                            SearchOption.AUTHOR);
+                }
+                req.setAttribute("search", true);
+            } catch (SQLException|ClassNotFoundException e) {
+
+            }
         }
-        req.setAttribute("search", true);
         req.setAttribute("booklist", list);
         resp.sendRedirect(req.getContextPath() + "/");
     }

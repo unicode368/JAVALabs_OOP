@@ -24,13 +24,24 @@
 <h1><%= "Ласкаво просимо!" %>
 </h1>
 <br/>
-<% if ((Boolean) request.getAttribute("search")) { %>
+<% if (request.getAttribute("search") != null &&
+         (Boolean) request.getAttribute("search")) { %>
 <h2><%= "Результати пошуку: " %></h2>
 <%    } %>
 <form>
 <div class="divTable" style="background-color: azure; border-radius: 25px" id="divTable">
     <%@include file="jsp/book-list.jsp" %>
 </div>
+</form>
+<div style="height: 30px"></div>
+<form action="${pageContext.request.contextPath}/" method="POST">
+    <select name="sort" id="sort" onchange="this.form.submit()">
+        <option value="" disabled selected>Сортувати за...</option>
+        <option value="name">Ім'ям</option>
+        <option value="author">Автором</option>
+        <option value="edition">Виданням</option>
+        <option value="date">Датою видання</option>
+    </select>
 </form>
 </body>
 </html>

@@ -2,29 +2,30 @@ package com.example.JavaLab4.model;
 
 public class Order {
 
-    private int reader_id;
-    private int librarian;
-    private int book;
+    private String reader;
+    private String librarian;
+    private Book book;
     private Date date;
     private Date returnDate;
 
-    public Order(int reader_id, int librarian, int book, Date date, Date returnDate) {
-        this.reader_id = reader_id;
+    public Order(String reader, String librarian, Book book,
+                 Date date, Date returnDate) {
+        this.reader = reader;
         this.librarian = librarian;
         this.book = book;
         this.date = date;
         this.returnDate = returnDate;
     }
 
-    public int getReaderId() {
-        return reader_id;
+    public String getReaderId() {
+        return reader;
     }
 
-    public int getLibrarian() {
+    public String getLibrarian() {
         return librarian;
     }
 
-    public int getBook() {
+    public Book getBook() {
         return book;
     }
 
@@ -36,15 +37,15 @@ public class Order {
         return returnDate;
     }
 
-    public void setReaderId(int reader_id) {
-        this.reader_id = reader_id;
+    public void setReaderId(String reader_id) {
+        this.reader = reader_id;
     }
 
-    public void setLibrarian(int librarian) {
+    public void setLibrarian(String librarian) {
         this.librarian = librarian;
     }
 
-    public void setBook(int book) {
+    public void setBook(Book book) {
         this.book = book;
     }
 

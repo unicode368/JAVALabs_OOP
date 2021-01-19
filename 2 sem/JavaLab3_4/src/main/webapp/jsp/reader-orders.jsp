@@ -26,6 +26,7 @@
 <h1><%= "Мої замовлення:" %>
 </h1>
 <br/>
+<div class="divTable" style="background-color: azure; border-radius: 25px" id="divTable">
 <%    if(orders != null && orders.size() > 0) {
     int j; %>
 <div class="divTable" style="background-color: azure; border-radius: 25px" id="divTable">
@@ -64,6 +65,7 @@
 </tr>
 
 <%}%>
+</div>
 </div>
 </body>
 </html>

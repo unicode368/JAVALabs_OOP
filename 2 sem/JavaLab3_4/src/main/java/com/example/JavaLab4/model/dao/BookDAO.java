@@ -3,6 +3,7 @@ package com.example.JavaLab4.model.dao;
 import com.example.JavaLab4.model.Book;
 import com.example.JavaLab4.model.Date;
 import com.example.JavaLab4.model.SearchOption;
+import com.example.JavaLab4.model.SortOption;
 import com.example.JavaLab4.model.user.User;
 import com.example.JavaLab4.model.user.UserType;
 
@@ -76,5 +77,34 @@ public class BookDAO implements DAO {
     @Override
     public void set() {
 
+    }
+
+    public ArrayList<Book> getSorted(String sortOption) throws SQLException {
+        ArrayList<Book> books = new ArrayList<>();
+        Statement statement = db.createStatement();
+        ResultSet query = statement.executeQuery("SELECT * FROM books ORDER BY name");;
+        switch (sortOption) {
+            case "name":
+                query = statement.executeQuery("SELECT * FROM books ORDER BY name");
+                break;
+            case "author":
+                query = statement.executeQuery("SELECT * FROM books ORDER BY author");
+                break;
+            case "edition":
+                query = statement.executeQuery("SELECT * FROM books ORDER BY edition");
+                break;
+            case "date":
+                query = statement.executeQuery("SELECT * FROM books ORDER BY date");
+                break;
+        }
+        while (query.next()) {
+            books.add(new Book(query.getInt("id"),
+                    query.getString("name"),
+                    query.getString("author"),
+                    query.getString("edition"),
+                    new Date(query.getString("date")),
+                    query.getInt("amount")));
+        }
+        return books;
     }
 }

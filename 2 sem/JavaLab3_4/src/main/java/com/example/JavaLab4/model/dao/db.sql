@@ -36,3 +36,32 @@ UPDATE users SET id=10000+nextval('users_id_seq');
 ALTER SEQUENCE users_id_seq RESTART WITH 1;
 
 UPDATE users SET id=nextval('users_id_seq');
+
+SELECT * FROM books;
+
+CREATE TABLE orders (
+	reader_id int NOT NULL,
+	librarian_id int NOT NULL,
+	book_id int NOT NULL,
+	date Date NOT NULL,
+	returnDate Date NOT NULL,
+	FOREIGN KEY(reader_id) REFERENCES users(id)
+	ON DELETE CASCADE,
+	FOREIGN KEY(librarian_id) REFERENCES users(id)
+	ON DELETE CASCADE,
+	FOREIGN KEY(book_id) REFERENCES books(id)
+	ON DELETE CASCADE
+);
+
+INSERT INTO orders VALUES
+(2, 3, 1, TO_DATE('20200119','YYYYMMDD'), TO_DATE('20200124','YYYYMMDD'))
+
+SELECT users.login AS reader_login, t1.login AS 
+librarian_login, books.name, books.author, books.edition, 
+books.date AS edition_date,
+orders.date, orders.returndate FROM orders
+JOIN users ON orders.reader_id = users.id
+JOIN (SELECT * FROM users) AS t1
+ON orders.librarian_id = t1.id
+JOIN books ON orders.book_id = books.id
+

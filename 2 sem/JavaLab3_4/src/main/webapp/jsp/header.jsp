@@ -11,7 +11,10 @@
     <script type="application/javascript">
         function showSearchBar() {
             document.getElementById('search-pane').innerHTML =
-                "<form action='${pageContext.request.contextPath}/' method='post'> <input type=\"text\" placeholder=\"Search..\" name=\"search\"> <input type=\"radio\" name=\"search-type\" value=\"name\"> name<br> <input type=\"radio\" name=\"search-type\" value=\"author\"> author<br> <button type=\"submit\" onclick=\"clear()\">Submit</button> </form>";
+                "<form action='${pageContext.request.contextPath}/' method='post'> " +
+                "<input type=\"text\" placeholder=\"Search..\" name=\"search\"> <input type=\"radio\" "
+            + "name=\"search-type\" value=\"name\"> name<br> <input type=\"radio\" name=\"search-type\" " +
+                "value=\"author\"> author<br> <button type=\"submit\" onclick=\"clear()\">Submit</button> </form>";
         }
     </script>
 </header>

@@ -1,8 +1,6 @@
 package com.example.JavaLab4.servlets;
 
-import com.example.JavaLab4.model.Book;
-import com.example.JavaLab4.model.ObjectType;
-import com.example.JavaLab4.model.SearchOption;
+import com.example.JavaLab4.model.service.AdminService;
 import com.example.JavaLab4.model.service.Service;
 import com.example.JavaLab4.model.user.User;
 
@@ -16,13 +14,13 @@ import javax.servlet.annotation.*;
 @WebServlet(name = "userList", value = "/userList")
 public class UsersList extends HttpServlet {
 
-    public Service service;
+    public AdminService service;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws
             IOException, ServletException {
         ArrayList<User> list = new ArrayList<>();
         try {
-            service = new Service();
+            service = new AdminService();
             list = service.getUserDAO().getAll();
         } catch (SQLException|ClassNotFoundException e) {
 

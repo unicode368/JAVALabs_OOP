@@ -29,8 +29,10 @@
         for (; j == i || j > 0 && j % 3 != 0; j++) {
             if (j >= booklist.size()) {
                 break;
-            } %>
-
+            }
+            if (booklist.get(j).getAmount() == 0) {
+                continue;
+            }%>
             <div class="Column" style="text-align: center; padding: 70px" >
                 <param name="book" id=<%=booklist.get(j).getId()%> value=<%=booklist.get(j).getId()%> />
             <div>Назва: <%=booklist.get(j).getName()%></div>
